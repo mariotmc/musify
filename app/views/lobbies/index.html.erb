@@ -1,0 +1,13 @@
+<div class="w-full">
+  <h1 class="mb-10 font-bold text-center text-4xl">Lobbies</h1>
+
+  <div class="grid grid-cols-3 gap-3">
+    <% @lobbies.each do |lobby| %>
+      <%= link_to lobby_path(lobby.code), class: "flex justify-between items-center max-w-sm p-4 bg-gray-100 rounded-lg" do %>
+        <span><%= lobby.code %></span>
+        <span><%= lobby.players.count %> Players</span>
+        <span><%= lobby.created_at.strftime("%d.%m.%y") %></span>
+      <% end %>
+    <% end %>
+  </div>
+</div>
