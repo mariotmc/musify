@@ -1,8 +1,8 @@
 class Game < ApplicationRecord
   belongs_to :lobby
   has_many :players, through: :lobby
-  has_many :rounds
-  has_many :songs
+  has_many :rounds, dependent: :destroy
+  has_many :songs, through: :rounds
 
   enum status: { waiting: 0, in_game: 1, finished: 2 }
 

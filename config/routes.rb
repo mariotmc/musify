@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   resources :lobbies, param: :code, only: [:index, :new, :create, :show]
 
-  resources :players, only: [:new, :create]
+  resources :players, only: [:new, :create, :destroy]
 
   resources :games, only: [:show] do
     resources :rounds, only: [:create] do

@@ -17,6 +17,14 @@ class PlayersController < ApplicationController
     end
   end
 
+  def destroy
+    player = Player.find(session[:player_id])
+    player.destroy
+    session[:player_id] = nil
+    Current.player = nil
+    redirect_to root_path
+  end
+
   private
     def player_params
       params.require(:player).permit(:lobby_id, :name)
