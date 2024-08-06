@@ -1,3 +1,5 @@
-<div>
-  <h1 class="font-bold text-4xl">Lobby: <%= @lobby.code %></h1>
-</div>
+<% @lobby.players.each do |player| %>
+  <div class="block">
+    <%= player.name %> - <%= player.host %>
+  </div>
+<% end %>

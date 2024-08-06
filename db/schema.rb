@@ -42,6 +42,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_04_151938) do
   create_table "players", force: :cascade do |t|
     t.bigint "lobby_id", null: false
     t.string "name"
+    t.boolean "host", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["lobby_id"], name: "index_players_on_lobby_id"
