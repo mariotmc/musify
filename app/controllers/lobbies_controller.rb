@@ -14,7 +14,6 @@ class LobbiesController < ApplicationController
     end
 
     def authenticate_player!
-      @current_player = Player.find_by(id: session[:player_id])
-      redirect_to new_player_path(code: @lobby.code) if @current_player.nil?
+      redirect_to new_player_path(code: @lobby.code) if Current.player.nil?
     end
 end

@@ -4,4 +4,4 @@
   </div>
 <% end %>
 
-<%= button_to "Leave Lobby", player_path(id: @current_player.id), method: :delete, class: "text-red-500" %>
+<%= button_to "Leave Lobby", player_path(id: Current.player.id), method: :delete, class: "text-red-500" %>
