@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   resources :players, only: [:new, :create, :destroy]
 
-  resources :games, only: [:show] do
+  resources :games, only: [:update] do
     resources :rounds, only: [:create] do
       resources :guesses, only: [:create]
     end

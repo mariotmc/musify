@@ -1,0 +1,9 @@
+<div class="p-3 flex flex-col justify-center items-center border border-gray-200">
+	<% if game.started? %>
+		<%= render partial: "games/started", locals: { game: game } %>
+	<% elsif game.ended? %>
+		<%= render partial: "games/ended", locals: { game: game } %>
+	<% else %>
+		<%= render partial: "games/waiting", locals: { game: game } %>
+	<% end %>
+</div>

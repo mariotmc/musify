@@ -4,19 +4,11 @@ class Game < ApplicationRecord
   has_many :rounds, dependent: :destroy
   has_many :songs, through: :rounds
 
-  enum status: { waiting: 0, in_game: 1, finished: 2 }
+  enum status: { waiting: 0, started: 1, ended: 2 }
 
-  broadcasts_to ->(game) { "game_#{game.id}" }
+  after_update_commit -> { broadcast_game_started if saved_change_to_status? && started? }
 
-  def start
-    update(status: "started")
-    broadcast_replace_to "game_#{id}", partial: "games/game", locals: { game: self }
-    start_next_round
-  end
-
-  def start_next_round
-    new_round = rounds.create
-    broadcast_append_to "game_#{id}", partial: "rounds/round", locals: { round: new_round }
-    RoundStartJob.perform_later(new_round)
+  def broadcast_game_started
+    broadcast_update_to("game_#{id}", partial: "games/game", locals: { game: self }, target: "game_#{id}")
   end
 end
