@@ -1,0 +1,3 @@
+<%= turbo_frame_tag "player_#{player.id}", class: "block" do %>
+	<%= player.name %> - <%= "Host" if player.host? %>
+<% end %>

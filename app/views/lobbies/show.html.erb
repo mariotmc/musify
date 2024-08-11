@@ -1,12 +1,12 @@
 <div class="flex w-full p-2">
-  <div class="p-3 border border-gray-200">
+  <%= turbo_stream_from "lobby_#{@lobby.id}_players" %>
+
+  <%= turbo_frame_tag "lobby_#{@lobby.id}_players", class: "p-3 border border-gray-200" do %>
     <% @lobby.players.each do |player| %>
-      <div class="block">
-        <%= player.name %> - <%= "Host" if player.host? %>
-      </div>
+      <%= render player %>
     <% end %>
-    <%= button_to "Leave Lobby", player_path(id: Current.player.id), method: :delete, class: "text-red-500" %>
-  </div>
+    <%= button_to "Leave Lobby", player_path(id: Current.player.id), data: { turbo_frame: "_top", turbo_confirm: 'Are you sure?' }, method: :delete, class: "text-red-500" %>
+  <% end %>
 
   <%= turbo_stream_from "game_#{@lobby.game.id}" %>
 
