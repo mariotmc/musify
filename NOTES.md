@@ -11,5 +11,4 @@ RSpotify::Track.search("do i wanna know?").first.album.images.second["url"]
 
 TODO
 
-- when a user joins a new lobby they should be deleted from the old lobby
 - round starts when all players have locked in their song (confirming sends a req to the server and we start when it's for example 5/5 req received)
