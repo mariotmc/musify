@@ -8,6 +8,7 @@ class PlayersController < ApplicationController
     @player = Player.create!(player_params)
 
     if @player.save
+      delete_player_from_existing_lobbies(Current.player) if Current.player
       session[:player_id] = @player.id
       Current.player = Player.find(session[:player_id])
       @player.update!(host: true) if @player.lobby.players.size == 1
@@ -28,5 +29,9 @@ class PlayersController < ApplicationController
   private
     def player_params
       params.require(:player).permit(:lobby_id, :name)
+    end
+
+    def delete_player_from_existing_lobbies(player)
+      Player.where(id: player.id).destroy_all
     end
 end

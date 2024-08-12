@@ -14,6 +14,6 @@ class LobbiesController < ApplicationController
     end
 
     def authenticate_player!
-      redirect_to new_player_path(code: @lobby.code) if Current.player.nil?
+      redirect_to new_player_path(code: @lobby.code) if Current.player.nil? || Current.player.lobby != @lobby
     end
 end
