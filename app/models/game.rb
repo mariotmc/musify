@@ -6,6 +6,7 @@ class Game < ApplicationRecord
 
   enum status: { waiting: 0, started: 1, ended: 2 }
 
+  after_create_commit -> { rounds.create!(current: true) }
   after_update_commit -> { broadcast_game_started if saved_change_to_status? && started? }
 
   def broadcast_game_started

@@ -1,5 +1,6 @@
 class Player < ApplicationRecord
   belongs_to :lobby
+  has_many :songs, dependent: :destroy
 
   after_create_commit -> { broadcast_player_created }
   after_destroy_commit -> { broadcast_player_removed }

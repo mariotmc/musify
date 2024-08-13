@@ -11,4 +11,7 @@ RSpotify::Track.search("do i wanna know?").first.album.images.second["url"]
 
 TODO
 
-- round starts when all players have locked in their song (confirming sends a req to the server and we start when it's for example 5/5 req received)
+- round maybe needs an enum with :waiting, :started, :finished to make it smoother to transition between stages with controller updates (and to have a way to start a round when all users have picked songs)
+- implement song form properly (spotify song search, display results (incl preview), submit proper song attributes)
+- flesh out steps for playing a round (guesses, timer, chat, hints etc.)
+  - the chat box is a round.guesses form in disguise

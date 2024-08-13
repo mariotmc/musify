@@ -1,4 +1,3 @@
-<div id="game-status">
-  <h2>Game has Started</h2>
-  <p>The game is now in progress...</p>
-</div>
+<%= turbo_frame_tag game do %>
+  <%= render game.rounds.current %>
+<% end %>

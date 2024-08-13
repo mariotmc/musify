@@ -50,6 +50,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_04_151938) do
 
   create_table "rounds", force: :cascade do |t|
     t.bigint "game_id", null: false
+    t.boolean "current", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["game_id"], name: "index_rounds_on_game_id"

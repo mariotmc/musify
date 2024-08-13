@@ -7,8 +7,8 @@ Rails.application.routes.draw do
 
   resources :games, only: [:update] do
     resources :rounds, only: [:create] do
+      resources :songs, only: [:new, :create]
       resources :guesses, only: [:create]
     end
-    resources :songs, only: [:create]
   end
 end
