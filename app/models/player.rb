@@ -12,4 +12,8 @@ class Player < ApplicationRecord
   def broadcast_player_removed
     broadcast_remove_to("lobby_#{lobby.id}_players", target: "player_#{self.id}")
   end
+
+  def created_song_for_current_round?
+    songs.exists?(round: lobby.game.current_round)
+  end
 end

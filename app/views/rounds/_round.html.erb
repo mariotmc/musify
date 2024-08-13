@@ -1,11 +1,9 @@
 <%= turbo_stream_from "round_#{round.id}" %>
 
-<%= turbo_frame_tag round do %>
-	<h2>Pick a song</h2>
-	<%= form_with model: [round.game, round, Song.new] do |form| %>
-		<%= form.hidden_field :round_id, value: round.id %>
-		<%= form.hidden_field :player_id, value: Current.player.id %>
-		<%= form.text_field :title %>
-		<%= form.submit %>
-	<% end %>
+<% if round.started? %>
+	<%= render partial: "rounds/started", locals: { round: round } %>
+<% elsif round.ended? %>
+	<%= render partial: "rounds/ended", locals: { round: round } %>
+<% else %>
+	<%= render partial: "rounds/waiting", locals: { round: round } %>
 <% end %>

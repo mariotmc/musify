@@ -7,7 +7,7 @@ class SongsController < ApplicationController
     @song = Song.create!(song_params)
 
     if @song.save
-      @song.confirm_song
+      @song.round.start
     else
       render :new, status: :unprocessable_entity
     end

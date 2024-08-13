@@ -1,0 +1,7 @@
+<h2>Pick a song</h2>
+<%= form_with model: [round.game, round, Song.new] do |form| %>
+	<%= form.hidden_field :round_id, value: round.id %>
+	<%= form.hidden_field :player_id, value: Current.player.id %>
+	<%= form.text_field :title %>
+	<%= form.submit %>
+<% end %>
