@@ -12,4 +12,6 @@ Rails.application.routes.draw do
       resources :guesses, only: [:create]
     end
   end
+
+  resources :song_searches, only: [:index, :create]
 end

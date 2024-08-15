@@ -1,0 +1,2 @@
+class SongSearch < ApplicationRecord
+end

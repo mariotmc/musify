@@ -11,7 +11,6 @@ RSpotify::Track.search("do i wanna know?").first.album.images.second["url"]
 
 TODO
 
-- implement song form properly (spotify song search, display results (incl preview), submit proper song attributes)
-  - song options should be radio buttons
+- song should have a display_name attribute which the user can modify after submitting the song (this can also be used for the hint method) (maybe strip any punctuation and anything in brackets immediately (so no user input needed) and have it as a instance method?)
 - flesh out steps for playing a round (guesses, timer, chat, hints etc.)
   - the chat box is a round.guesses form in disguise

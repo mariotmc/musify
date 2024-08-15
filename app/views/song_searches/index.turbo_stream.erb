@@ -1,0 +1,19 @@
+<%= turbo_stream.update "song_search_results" do %>
+	<%= form_with url: song_searches_path, method: :post, data: { turbo_stream: true } do %>
+		<%= hidden_field_tag :round_id, @round_id %>
+		<%= hidden_field_tag :player_id, @player_id %>
+
+		<% @songs.each do |song| %>
+			<div>
+				<%= radio_button_tag :spotify_id, song.id %>
+				<%= label_tag "song_id_#{song.id}", "#{song.name} by #{song.artists.map(&:name).join(', ')}" %>
+			</div>
+		<% end %>
+
+		<%= submit_tag "Select Song" %>
+	<% end %>
+
+	<% if @songs.empty? %>
+		<p>No songs found</p>
+	<% end %>
+<% end %>
