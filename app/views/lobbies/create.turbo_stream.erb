@@ -1,0 +1,7 @@
+<%= turbo_stream.append "lobbies" do %>
+	<%= link_to lobby_path(@lobby.code), class: "flex justify-between items-center max-w-sm p-4 bg-gray-100 rounded-""lg" do %>
+		<span><%= @lobby.code %></span>
+		<span><%= @lobby.players.count %> Players</span>
+		<span><%= @lobby.created_at.strftime("%d.%m.%y") %></span>
+	<% end %>
+<% end %>

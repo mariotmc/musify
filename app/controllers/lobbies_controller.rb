@@ -5,7 +5,16 @@ class LobbiesController < ApplicationController
     @lobbies = Lobby.all
   end
 
+  def create
+    @lobby = Lobby.create!
+  end
+
   def show
+  end
+
+  def destroy
+    Lobby.destroy_all
+    render turbo_stream: turbo_stream.update("lobbies")
   end
 
   private
