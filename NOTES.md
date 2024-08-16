@@ -12,5 +12,6 @@ RSpotify::Track.search("do i wanna know?").first.album.images.second["url"]
 TODO
 
 - song should have a display_name attribute which the user can modify after submitting the song (this can also be used for the hint method) (maybe strip any punctuation and anything in brackets immediately (so no user input needed) and have it as a instance method?)
+  - exclude songs without preview_url from search results
 - flesh out steps for playing a round (guesses, timer, chat, hints etc.)
   - the chat box is a round.guesses form in disguise
