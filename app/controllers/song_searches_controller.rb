@@ -5,7 +5,7 @@ class SongSearchesController < ApplicationController
 
     if params[:query].present?
       RSpotify.authenticate("8c6ed9e346ee4138b41deaa656898eaf", "1066e11a240943c8af2ef7e0a31bb455")
-      @songs = RSpotify::Track.search(params[:query]).first(9)
+      @songs = RSpotify::Track.search(params[:query], limit: 12)
     else
       @songs = []
     end
