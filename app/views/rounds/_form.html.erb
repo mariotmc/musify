@@ -1,6 +1,6 @@
 <h2>Pick a song</h2>
 
-<%= turbo_frame_tag "song_search_query" do %>
+<%= turbo_frame_tag "song_search_query", class: "w-full" do %>
 	<%= form_with url: song_searches_path, method: :get, data: { turbo_stream: true } do %>
 		<%= hidden_field_tag :round_id, round.id %>
 		<%= hidden_field_tag :player_id, Current.player.id %>
@@ -8,5 +8,5 @@
 		<%= submit_tag "Search" %>
 	<% end %>
 
-	<%= turbo_frame_tag "song_search_results" %>
+	<%= turbo_frame_tag "song_search_results", class: "w-full" %>
 <% end %>

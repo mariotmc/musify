@@ -3,7 +3,7 @@
 		<%= hidden_field_tag :round_id, @round_id %>
 		<%= hidden_field_tag :player_id, @player_id %>
 
-		<div data-controller="song-picker" class="grid grid-cols-3 gap-5">
+		<div data-controller="song-picker" class="grid grid-cols-2 gap-5">
 			<% @songs.each do |song| %>
 				<div data-song-picker-target="song" data-action="click->song-picker#selectSong" class="flex items-center gap-3 p-2 rounded-lg transition-shadow cursor-pointer">
 					<%= radio_button_tag :spotify_id, song.id, class: "hidden" %>
@@ -12,7 +12,7 @@
 					<div class="flex-1 h-fit text-sm text-gray-500">
 						<p><%= song.name %></p>
 						<p><%= song.artists.first.name %></p>
-						<audio controls class="w-full">
+						<audio controls class="w-full h-9">
 							<source src="<%= song.preview_url %>" type="audio/mpeg">
 							Your browser does not support the audio element.
 						</audio>
