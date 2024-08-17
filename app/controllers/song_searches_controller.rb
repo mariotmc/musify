@@ -4,7 +4,8 @@ class SongSearchesController < ApplicationController
     @round_id = params[:round_id]
 
     if params[:query].present?
-      @songs = RSpotify::Track.search(params[:query], limit: 12)
+      @all_songs = RSpotify::Track.search(params[:query], limit: 25)
+      @songs = @all_songs.select { |song| song.preview_url.present? }.first(12)
     else
       @songs = []
     end
