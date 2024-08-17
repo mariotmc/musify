@@ -26,5 +26,7 @@ module SongGuesser
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+
+    RSpotify.authenticate("8c6ed9e346ee4138b41deaa656898eaf", "1066e11a240943c8af2ef7e0a31bb455")
   end
 end
