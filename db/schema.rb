@@ -43,6 +43,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_04_151938) do
     t.bigint "lobby_id", null: false
     t.string "name"
     t.boolean "host", default: false
+    t.integer "score", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["lobby_id"], name: "index_players_on_lobby_id"
@@ -52,6 +53,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_04_151938) do
     t.bigint "game_id", null: false
     t.integer "status", default: 0
     t.boolean "current", default: false
+    t.integer "current_song_index", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["game_id"], name: "index_rounds_on_game_id"

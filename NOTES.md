@@ -29,4 +29,5 @@ tracks = JSON.parse(response.body)['tracks']['items']
 TODO
 
 - flesh out steps for playing a round (guesses, timer, chat, hints etc.)
-  - the chat box is a round.guesses form in disguise
+  - disable timer and make guesses work (chat box is a round.guesses form in disguise)
+  - right now it goes from song to song, but after a song it should go to the round's standings (does it need it's own model to do round.standings?) and there should be a button for the host to start the next song
