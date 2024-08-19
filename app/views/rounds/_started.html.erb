@@ -1,8 +1,20 @@
 <%= turbo_frame_tag round, class: "w-full" do %>
-	<h2>Current Song: <%= round.current_song.title %></h2>
+	<%= turbo_stream_from "round_#{round.id}_guesses" %>
 
-	<%= form_with model: [round.game, round, Guess.new], local: false do |f| %>
-		<%= f.text_field :content, placeholder: "Your guess" %>
-		<%= f.submit "Submit Guess" %>
-	<% end %>
+	<div class="flex gap-10">
+		<div>
+			<h2>Current Song: <%= round.current_song.title %></h2>
+			<%= image_tag round.current_song.image, class: "max-w-40 h-auto rounded-lg blur-md" %>
+		</div>
+
+		<div class="self-end overflow-hidden w-full">
+			<%= turbo_frame_tag "round_#{round.id}_guesses" do %>
+				<%= render partial: "guesses/guess", collection: round.guesses %>
+			<% end %>
+
+			<%= form_with model: [round.game, round, Guess.new], data: { controller: "guess-form" } do |f| %>
+				<%= f.text_field :content, placeholder: "Take a guess", data: { guess_form_target: "input" }, autofocus: true, class: "w-full" %>
+			<% end %>
+		</div>
+	</div>
 <% end %>

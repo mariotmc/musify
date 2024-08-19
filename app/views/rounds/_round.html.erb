@@ -2,8 +2,10 @@
 
 <% if round.started? %>
 	<%= render partial: "rounds/started", locals: { round: round } %>
+<% elsif round.waiting? %>
+	<%= render partial: "rounds/waiting", locals: { round: round } %>
+<% elsif round.scoreboard? %>
+	<%= render partial: "rounds/scoreboard", locals: { round: round } %>
 <% elsif round.ended? %>
 	<%= render partial: "rounds/ended", locals: { round: round } %>
-<% else %>
-	<%= render partial: "rounds/waiting", locals: { round: round } %>
 <% end %>

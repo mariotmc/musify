@@ -6,7 +6,7 @@ class Round < ApplicationRecord
   after_update_commit -> { broadcast_round }, if: -> { saved_change_to_status? }
   after_update_commit -> { start_next_round }, if: -> { saved_change_to_current_song_index? }
 
-  enum status: { waiting: 0, started: 1, ended: 2 }
+  enum status: { waiting: 0, started: 1, scoreboard: 2, ended: 3 }
 
   scope :current, -> { where(current: true) }
 
@@ -23,13 +23,21 @@ class Round < ApplicationRecord
   end
 
   def next_song!
-    update(current_song_index: current_song_index + 1)
+    if current_song_index < songs.size - 1
+      update!(current_song_index: current_song_index + 1)
+    else
+      update!(status: "scoreboard")
+    end
     # this should be called when all players have guessed the song as well (would need a check to see if all players have guessed correctly which should probably happen on every correct guess)
   end
 
   def start_next_round
     broadcast_round
     start_timer
+  end
+
+  def all_players_guessed_correctly?
+    (guesses.where(correct: true).size / (current_song_index + 1)) == (game.players.size * songs.size / (current_song_index + 1))
   end
 
   private
@@ -41,10 +49,6 @@ class Round < ApplicationRecord
 
     def all_songs_received?
       songs.size >= game.lobby.players.size
-    end
-
-    def all_players_guessed?
-      guesses.where(song: current_song, correct: true).count == game.players.count
     end
 
     def start_timer

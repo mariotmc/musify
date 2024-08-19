@@ -1,0 +1,8 @@
+<%= turbo_frame_tag guess do %>
+	<% if guess.correct? %>
+		<p class="text-green-500 text-sm"><%= guess.player.name %> guessed the song!</p>
+	<% else %>
+		<p class="text-blue-500 text-sm"><%= guess.player.name %></p>
+		<p class="text-gray-500 text-sm"><%= guess.content %></p>
+	<% end %>
+<% end %>

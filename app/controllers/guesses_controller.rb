@@ -2,9 +2,8 @@ class GuessesController < ApplicationController
   def create
     @round = Round.find(params[:round_id])
     @guess = @round.guesses.build(guess_params)
-    @guess.player = current_player
-    @guess.save
-    @round.check_round_status
+    @guess.player = Current.player
+    @guess.save!
     head :ok
   end
 

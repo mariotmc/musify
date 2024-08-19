@@ -25,7 +25,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_04_151938) do
   create_table "guesses", force: :cascade do |t|
     t.bigint "player_id", null: false
     t.bigint "round_id", null: false
-    t.string "content"
+    t.string "content", null: false
+    t.boolean "correct", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["player_id"], name: "index_guesses_on_player_id"

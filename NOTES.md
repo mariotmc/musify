@@ -29,5 +29,13 @@ tracks = JSON.parse(response.body)['tracks']['items']
 TODO
 
 - flesh out steps for playing a round (guesses, timer, chat, hints etc.)
-  - disable timer and make guesses work (chat box is a round.guesses form in disguise)
-  - right now it goes from song to song, but after a song it should go to the round's standings (does it need it's own model to do round.standings?) and there should be a button for the host to start the next song
+  - #all_players_guessed_correctly? doesn't work if e.g. in round 1 no one has correctly guessed the song
+  - weird bug (only once?) where on the second song it wouldn't append any new guesses to the chat
+  - should play music when guessing
+  - host button to get to the next song in standings partial
+  - points based on how much time left (10 points per second left, e.g. 5 seconds left i.e. 25 seconds needed to guess correctly == 50 points (300 - 250))
+  - if player guessed correctly disable their input (idk if overkill for mvp)
+- player display_name_color, avatar (take from songl.io)
+- model validations
+- necessary edge cases (scoop up from AI chats)
+- design
