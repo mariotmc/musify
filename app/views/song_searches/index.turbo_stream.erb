@@ -6,14 +6,14 @@
 		<div data-controller="song-picker" class="grid grid-cols-2 gap-5">
 			<% @songs.each do |song| %>
 				<div data-song-picker-target="song" data-action="click->song-picker#selectSong" class="flex items-center gap-3 p-2 rounded-lg transition-shadow cursor-pointer">
-					<%= radio_button_tag :spotify_id, song.id, class: "hidden" %>
-					<%= image_tag song.album.images.second["url"], class: "w-20 h-20 rounded-lg" %>
+					<%= radio_button_tag :spotify_id, song[:id], class: "hidden" %>
+					<%= image_tag song[:image], class: "w-20 h-20 rounded-lg" %>
 
 					<div class="flex-1 h-fit text-sm text-gray-500">
-						<p><%= song.name %></p>
-						<p><%= song.artists.first.name %></p>
+						<p><%= song[:title] %></p>
+						<p><%= song[:artist] %></p>
 						<audio controls class="w-full h-9">
-							<source src="<%= song.preview_url %>" type="audio/mpeg">
+							<source src="<%= song[:preview_url] %>" type="audio/mpeg">
 							Your browser does not support the audio element.
 						</audio>
 					</div>
