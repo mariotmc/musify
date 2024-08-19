@@ -1,6 +1,7 @@
 class Guess < ApplicationRecord
   belongs_to :player
   belongs_to :round
+  belongs_to :song
 
   after_create :mark_correct!, if: :correct_guess?
   after_create_commit :broadcast_guess

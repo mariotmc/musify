@@ -1,6 +1,7 @@
 class Song < ApplicationRecord
   belongs_to :round
   belongs_to :player
+  has_many :guesses, dependent: :destroy
 
   def display_name
     title.gsub(/\[.*?\]/, '').gsub(/\s*\(?\s*feat\.?.*$/i, '').gsub(/[[:punct:]]/, '').strip

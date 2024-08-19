@@ -9,6 +9,6 @@ class GuessesController < ApplicationController
 
   private
     def guess_params
-      params.require(:guess).permit(:content)
+      params.require(:guess).permit(:song_id, :content)
     end
 end
