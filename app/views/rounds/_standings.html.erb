@@ -1,6 +1,0 @@
-<%= turbo_frame_tag "standings" do %>
-  <h3>Standings</h3>
-  <% round.game.players.order(score: :desc).each do |player| %>
-    <p><%= player.name %>: <%= player.score %></p>
-  <% end %>
-<% end %>
