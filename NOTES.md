@@ -33,6 +33,10 @@ TODO
   - should play music when guessing
   - host button to get to the next song in standings partial
   - points based on how much time left (10 points per second left, e.g. 5 seconds left i.e. 25 seconds needed to guess correctly == 50 points (300 - 250))
+  - visual timer
+  - hints
+  - if player's guess is close to being correct, the message should be (xyz was close!)
+  - image less blurred the more time passes (decrease in 5-10s intervals?)
   - if player guessed correctly disable their input (idk if overkill for mvp)
 - player display_name_color, avatar (take from songl.io)
 - model validations

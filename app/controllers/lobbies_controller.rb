@@ -14,6 +14,8 @@ class LobbiesController < ApplicationController
 
   def destroy
     Lobby.destroy_all
+    Current.player = nil
+    session[:player_id] = nil
     render turbo_stream: turbo_stream.update("lobbies")
   end
 
