@@ -29,8 +29,8 @@ tracks = JSON.parse(response.body)['tracks']['items']
 TODO
 
 - flesh out steps for playing a round (guesses, timer, chat, hints etc.)
-  - on the second song it won't append any new guesses to the chat (possibly turbo_frame removed when switching scenes? also getting -> Could not execute command from ({"command"=>"unsubscribe", "identifier"=>"{\"channel\":\"Turbo::StreamsChannel\",\"signed_stream_name\":\"InJvdW5kXzE1X2d1ZXNzZXMi--b22b90156ebe808c7bf489b413100630e05507f30fdcd5def2a9492826b13596\"}"}) RuntimeError - Unable to find subscription with identifier: "channel":"Turbo::StreamsChannel", ...)
   - should play music when guessing
+  - should go to scoreboard after each song
   - host button to get to the next song in standings partial
   - points based on how much time left (10 points per second left, e.g. 5 seconds left i.e. 25 seconds needed to guess correctly == 50 points (300 - 250))
   - visual timer
