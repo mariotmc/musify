@@ -5,6 +5,9 @@
 		<div>
 			<h2>Current Song: <%= round.current_song.title %></h2>
 			<%= image_tag round.current_song.image, class: "max-w-40 h-auto rounded-lg blur-md" %>
+			<audio autoplay class="hidden">
+				<source src="<%= round.current_song.preview_url %>" type="audio/mpeg">
+			</audio>
 		</div>
 
 		<div class="self-end overflow-hidden w-full">
