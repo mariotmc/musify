@@ -29,7 +29,6 @@ tracks = JSON.parse(response.body)['tracks']['items']
 TODO
 
 - flesh out steps for playing a round (guesses, timer, chat, hints etc.)
-  - should play music when guessing
   - should go to scoreboard after each song
   - host button to get to the next song in standings partial
   - points based on how much time left (10 points per second left, e.g. 5 seconds left i.e. 25 seconds needed to guess correctly == 50 points (300 - 250))
