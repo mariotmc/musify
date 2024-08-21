@@ -16,7 +16,6 @@
 			<% end %>
 
 			<%= form_with model: [round.game, round, Guess.new], data: { controller: "guess-form" } do |f| %>
-				<%= f.hidden_field :player_id, value: Current.player.id %>
 				<%= f.hidden_field :song_id, value: round.current_song.id %>
 				<%= f.text_field :content, placeholder: "Take a guess", data: { guess_form_target: "input" }, autofocus: true, class: "w-full" %>
 			<% end %>
