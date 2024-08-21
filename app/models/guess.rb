@@ -12,7 +12,7 @@ class Guess < ApplicationRecord
 
   def mark_correct!
     update!(correct: true)
-    round.next_song! if round.all_players_guessed_correctly?
+    round.finish_current_song! if round.all_players_guessed_correctly?
   end
 
   def correct_guess?

@@ -6,11 +6,16 @@ class RoundsController < ApplicationController
   end
 
   def update
-    @round.next_song!
+    @round.update!(round_params)
+    head :no_content
   end
 
   private
     def set_round
       @round = Round.find(params[:id])
+    end
+
+    def round_params
+      params.require(:round).permit(:status)
     end
 end

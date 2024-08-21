@@ -4,7 +4,6 @@ class Round < ApplicationRecord
   has_many :guesses, dependent: :destroy
 
   after_update_commit -> { broadcast_round }, if: -> { saved_change_to_status? }
-  after_update_commit -> { start_next_round }, if: -> { saved_change_to_current_song_index? }
 
   enum status: { waiting: 0, started: 1, scoreboard: 2, ended: 3 }
 
@@ -22,15 +21,19 @@ class Round < ApplicationRecord
     songs[current_song_index]
   end
 
-  def next_song!
-    if current_song_index < songs.size - 1
+  def finish_current_song!
+    if next_song?
       update!(current_song_index: current_song_index + 1)
-    else
-      update!(status: "scoreboard")
     end
+
+    update!(status: "scoreboard")
   end
 
-  def start_next_round
+  def next_song!
+    update!(status: "started")
+  end
+
+  def start_next_song
     broadcast_round
     start_timer
   end
@@ -40,10 +43,14 @@ class Round < ApplicationRecord
     correct_guesses_for_current_song == game.players.size
   end
 
+  def next_song?
+    current_song_index <= songs.size - 1
+  end
+
   private
     def start_round
       shuffle_songs
-      update!(status: "started")
+      next_song!
       start_timer
     end
 
@@ -52,7 +59,7 @@ class Round < ApplicationRecord
     end
 
     def start_timer
-      TimerJob.set(wait: 30.seconds).perform_later(round: self, player: Current.player)
+      # TimerJob.set(wait: 30.seconds).perform_later(round: self, player: Current.player)
     end
 
     def shuffle_songs

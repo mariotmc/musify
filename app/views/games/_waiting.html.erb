@@ -1,5 +1,5 @@
 <p>Waiting for Host to start the game</p>
 
 <% if Current.player.host?  %>
-	<%= button_to "Start Game", game_path(@lobby.game, game: { status: :started }), method: :patch %>
+	<%= button_to "Start Game", game_path(@lobby.game, game: { status: "started" }), method: :patch %>
 <% end %>

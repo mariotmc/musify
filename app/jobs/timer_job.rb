@@ -1,6 +1,11 @@
 class TimerJob < ApplicationJob
   def perform(round:, player:)
-    Current.player = Player.find(player.id)
-    Round.find(round.id).next_song!
+    round = Round.find(round.id)
+    player = Player.find(player.id)
+
+    return if round.status == "scoreboard"
+
+    Current.player = player
+    round.finish_current_song!
   end
 end
