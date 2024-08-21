@@ -29,14 +29,12 @@ tracks = JSON.parse(response.body)['tracks']['items']
 TODO
 
 - round logic
-  - Current.player and turbo broadcasts are not mixing well (last person to action usually ends up being current player)
-    - fucks up everything, try removing Current.player usage as much as possible
-    - it seems to be working fine in actions like leaving the lobby and submitting a guess (maybe just weird with turbo?)
   - points based on how much time left (10 points per second left, e.g. 5 seconds left i.e. 25 seconds needed to guess correctly == 50 points (300 - 250))
   - visual timer
   - hints
   - if player's guess is close to being correct, the message should be (xyz was close!)
   - image less blurred the more time passes (decrease in 5-10s intervals?)
+  - next song/end round button visible for everyone
   - if player guessed correctly disable their input (idk if overkill for mvp)
 - player display_name_color, avatar (take from songl.io)
 - model validations

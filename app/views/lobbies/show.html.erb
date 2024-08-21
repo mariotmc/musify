@@ -1,14 +1,13 @@
-<div class="flex w-full p-2">
-  <%= turbo_stream_from "lobby_#{@lobby.id}_players" %>
+<%= turbo_stream_from "lobby_#{@lobby.id}_players", data: { test: "lobby_#{@lobby.id}_players" } %>
+<%= turbo_stream_from "game_#{@lobby.game.id}", data: { test: "game_#{@lobby.game.id}" } %>
 
+<div class="flex w-full p-2">
   <%= turbo_frame_tag "lobby_#{@lobby.id}_players", class: "p-3 border border-gray-200" do %>
     <% @lobby.players.each do |player| %>
       <%= render player %>
     <% end %>
     <%= button_to "Leave Lobby", player_path(id: Current.player.id), data: { turbo_frame: "_top", turbo_confirm: 'Are you sure?' }, method: :delete, class: "text-red-500" %>
   <% end %>
-
-  <%= turbo_stream_from "game_#{@lobby.game.id}" %>
 
   <%= turbo_frame_tag "game_#{@lobby.game.id}", class: "flex-1 w-full" do %>
     <%= render @lobby.game %>

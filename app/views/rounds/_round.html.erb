@@ -1,5 +1,3 @@
-<%= turbo_stream_from "round_#{round.id}" %>
-
 <% if round.started? %>
 	<%= render partial: "rounds/started", locals: { round: round } %>
 <% elsif round.waiting? %>

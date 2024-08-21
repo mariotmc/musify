@@ -1,5 +1,5 @@
 <%= turbo_frame_tag round, class: "w-full" do %>
-	<%= turbo_stream_from "round_#{round.id}_guesses" %>
+	<%= turbo_stream_from "round_#{round.id}_guesses", data: { test: "round_#{round.id}_guesses" } %>
 
 	<div class="flex gap-10">
 		<div>
@@ -11,7 +11,7 @@
 		</div>
 
 		<div class="self-end overflow-hidden w-full">
-			<%= turbo_frame_tag "round_#{round.id}_guesses" do %>
+			<%= turbo_frame_tag "round_#{round.id}_guesses", class: "w-full h-full" do %>
 				<%= render partial: "guesses/guess", collection: round.guesses %>
 			<% end %>
 
