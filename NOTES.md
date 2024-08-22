@@ -29,17 +29,16 @@ tracks = JSON.parse(response.body)['tracks']['items']
 TODO
 
 - round logic
-  - points based on how much time left (10 points per second left, e.g. 5 seconds left i.e. 25 seconds needed to guess correctly == 50 points (300 - 250))
-  - visual timer
   - hints
   - if player's guess is close to being correct, the message should be (xyz was close!)
   - image less blurred the more time passes (decrease in 5-10s intervals?)
   - next song/end round button visible for everyone
-    - maybe replace host buttons with "ready" buttons
+    - maybe replace host buttons (remove host concept entirely) with "ready" buttons
     - every user has to click it and when all users readied up game starts/next song is played
     - have little icon next to the player names that indicate if they pressed ready (resets after everyone is ready)
   - if player guessed correctly disable their input (idk if overkill for mvp)
-- player display_name_color, avatar (take from songl.io)
+- start new round after all songs played (create new round, all players have to ready up)
 - model validations
 - necessary edge cases (scoop up from AI chats)
-- design
+- player display_name_color, avatar (take from songl.io)
+- design + animations (animate.css, turbo 8 view transitions?)

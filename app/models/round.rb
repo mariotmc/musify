@@ -14,7 +14,7 @@ class Round < ApplicationRecord
   end
 
   def start
-    start_round if all_songs_received?
+    start_first_song if all_songs_received?
   end
 
   def current_song
@@ -34,9 +34,8 @@ class Round < ApplicationRecord
     current_song.record_start_time!
   end
 
-  def start_next_song
-    broadcast_round
-    start_timer
+  def next_song?
+    current_song_index <= songs.size - 1
   end
 
   def all_players_guessed_correctly?
@@ -44,12 +43,8 @@ class Round < ApplicationRecord
     correct_guesses_for_current_song == game.players.size
   end
 
-  def next_song?
-    current_song_index <= songs.size - 1
-  end
-
   private
-    def start_round
+    def start_first_song
       shuffle_songs
       next_song!
       start_timer
@@ -60,7 +55,7 @@ class Round < ApplicationRecord
     end
 
     def start_timer
-      # TimerJob.set(wait: 30.seconds).perform_later(round: self, player: Current.player)
+      TimerJob.set(wait: 30.seconds).perform_later(round: self)
     end
 
     def shuffle_songs

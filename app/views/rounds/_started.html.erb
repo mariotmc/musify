@@ -1,6 +1,8 @@
 <%= turbo_frame_tag round, class: "w-full" do %>
 	<%= turbo_stream_from "round_#{round.id}_guesses", data: { test: "round_#{round.id}_guesses" } %>
 
+	<%= render "rounds/timer", end_time: Time.current + 30.seconds %>
+
 	<div class="flex gap-10">
 		<div>
 			<h2>Current Song: <%= round.current_song.title %></h2>
