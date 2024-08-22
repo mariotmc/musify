@@ -11,6 +11,7 @@ class Guess < ApplicationRecord
   end
 
   def mark_correct!
+    player.add_points!(started: round.current_song.started_at, ended: Time.current)
     update!(correct: true)
     round.finish_current_song! if round.all_players_guessed_correctly?
   end

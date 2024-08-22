@@ -31,6 +31,7 @@ class Round < ApplicationRecord
 
   def next_song!
     update!(status: "started")
+    current_song.record_start_time!
   end
 
   def start_next_song

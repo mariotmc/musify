@@ -17,4 +17,12 @@ class Player < ApplicationRecord
   def created_song_for_current_round?
     songs.exists?(round: lobby.game.current_round)
   end
+
+  def add_points!(started:, ended:)
+    points_per_second = 10
+    max_time = 30
+    time_left = ended.to_i - started.to_i
+    points = (max_time - time_left) * points_per_second
+    update!(score: points)
+  end
 end

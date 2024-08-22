@@ -8,6 +8,7 @@ class CreateSongs < ActiveRecord::Migration[7.1]
       t.string :artist
       t.string :image
       t.string :preview_url
+      t.datetime :started_at
 
       t.timestamps
     end

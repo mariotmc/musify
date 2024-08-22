@@ -70,6 +70,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_19_124600) do
     t.string "artist"
     t.string "image"
     t.string "preview_url"
+    t.datetime "started_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["player_id"], name: "index_songs_on_player_id"
