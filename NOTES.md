@@ -35,6 +35,9 @@ TODO
   - if player's guess is close to being correct, the message should be (xyz was close!)
   - image less blurred the more time passes (decrease in 5-10s intervals?)
   - next song/end round button visible for everyone
+    - maybe replace host buttons with "ready" buttons
+    - every user has to click it and when all users readied up game starts/next song is played
+    - have little icon next to the player names that indicate if they pressed ready (resets after everyone is ready)
   - if player guessed correctly disable their input (idk if overkill for mvp)
 - player display_name_color, avatar (take from songl.io)
 - model validations
