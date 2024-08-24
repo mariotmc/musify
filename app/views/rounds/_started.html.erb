@@ -5,8 +5,8 @@
 
 	<div class="flex gap-10">
 		<div>
-			<h2>Current Song: <%= round.current_song.title %></h2>
 			<%= image_tag round.current_song.image, class: "max-w-40 h-auto rounded-lg blur-md" %>
+			<p><%= round.current_song.initial_visual_clue %></p>
 			<audio autoplay class="hidden">
 				<source src="<%= round.current_song.preview_url %>" type="audio/mpeg">
 			</audio>
