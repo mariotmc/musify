@@ -27,6 +27,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_19_124600) do
     t.bigint "round_id", null: false
     t.string "content", null: false
     t.boolean "correct", default: false
+    t.boolean "close", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "song_id", null: false

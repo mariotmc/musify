@@ -29,8 +29,6 @@ tracks = JSON.parse(response.body)['tracks']['items']
 TODO
 
 - round logic
-  - hints (started but needs to be finished -> https://claude.ai/chat/40b31db6-0531-41ad-b2f6-e957b76ce842)
-  - if player's guess is close to being correct, the message should be (xyz was close!)
   - image less blurred the more time passes (decrease in 5-10s intervals?)
   - next song/end round button visible for everyone
     - maybe replace host buttons (remove host concept entirely) with "ready" buttons
