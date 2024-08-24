@@ -6,7 +6,7 @@
 
     <div class="flex gap-10">
       <div>
-        <%= image_tag round.current_song.image, class: "max-w-40 h-auto rounded-lg blur-md" %>
+        <%= image_tag round.current_song.image, data: { timer_target: "image"},  class: "max-w-40 h-auto rounded-lg transition-all" %>
         <p data-controller="hint"
            data-hint-initial-hint-value="<%= round.current_song.initial_hint %>"
            data-hint-first-letter-hint-value="<%= round.current_song.hint_with_first_letters %>"

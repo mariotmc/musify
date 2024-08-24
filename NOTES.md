@@ -29,7 +29,6 @@ tracks = JSON.parse(response.body)['tracks']['items']
 TODO
 
 - round logic
-  - image less blurred the more time passes (decrease in 5-10s intervals?)
   - next song/end round button visible for everyone
     - maybe replace host buttons (remove host concept entirely) with "ready" buttons
     - every user has to click it and when all users readied up game starts/next song is played
