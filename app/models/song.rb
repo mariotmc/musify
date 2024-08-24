@@ -15,12 +15,14 @@ class Song < ApplicationRecord
     display_name.split.map do |word|
       case reveal_type
       when :first_letter
-        word[0] + '_' * (word.length - 1)
+        word.length == 1 ? '_' : word[0] + '_' * (word.length - 1)
       when :both_letters
-        if word.length > 1
-          word[0] + '_' * (word.length - 2) + word[-1]
+        if word.length == 1
+          '_'
+        elsif word.length <= 3
+          word[0] + '_' * (word.length - 1)
         else
-          word
+          word[0] + '_' * (word.length - 2) + word[-1]
         end
       else
         '_' * word.length
