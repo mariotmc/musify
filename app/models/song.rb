@@ -11,7 +11,7 @@ class Song < ApplicationRecord
     title.gsub(/\[.*?\]/, '').gsub(/\s*\(?\s*feat\.?.*$/i, '').gsub(/[[:punct:]]/, '').strip.upcase
   end
 
-  def visual_clue(reveal_type: :none)
+  def hint(reveal_type: :none)
     display_name.split.map do |word|
       case reveal_type
       when :first_letter
@@ -28,15 +28,15 @@ class Song < ApplicationRecord
     end.join(' ')
   end
 
-  def initial_visual_clue
-    visual_clue
+  def initial_hint
+    hint
   end
 
-  def visual_clue_with_first_letters
-    visual_clue(:first_letter)
+  def hint_with_first_letters
+    hint(reveal_type: :first_letter)
   end
 
-  def visual_clue_with_both_letters
-    visual_clue(:both_letters)
+  def hint_with_both_letters
+    hint(reveal_type: :both_letters)
   end
 end

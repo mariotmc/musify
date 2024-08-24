@@ -1,26 +1,34 @@
 <%= turbo_frame_tag round, class: "w-full" do %>
-	<%= turbo_stream_from "round_#{round.id}_guesses", data: { test: "round_#{round.id}_guesses" } %>
+  <%= turbo_stream_from "round_#{round.id}_guesses", data: { test: "round_#{round.id}_guesses" } %>
 
-	<%= render "rounds/timer", end_time: Time.current + 30.seconds %>
+  <div data-controller="timer" data-timer-end-time-value="<%= (Time.current + 30.seconds).to_i %>" data-timer-hint-outlet="#hint">
+    <span data-timer-target="timerDisplay">30</span>
 
-	<div class="flex gap-10">
-		<div>
-			<%= image_tag round.current_song.image, class: "max-w-40 h-auto rounded-lg blur-md" %>
-			<p><%= round.current_song.initial_visual_clue %></p>
-			<audio autoplay class="hidden">
-				<source src="<%= round.current_song.preview_url %>" type="audio/mpeg">
-			</audio>
-		</div>
+    <div class="flex gap-10">
+      <div>
+        <%= image_tag round.current_song.image, class: "max-w-40 h-auto rounded-lg blur-md" %>
+        <p data-controller="hint"
+           data-hint-initial-hint-value="<%= round.current_song.initial_hint %>"
+           data-hint-first-letter-hint-value="<%= round.current_song.hint_with_first_letters %>"
+           data-hint-both-letters-hint-value="<%= round.current_song.hint_with_both_letters %>"
+           id="hint">
+          <span data-hint-target="hintDisplay"></span>
+        </p>
+        <audio autoplay class="hidden">
+          <source src="<%= round.current_song.preview_url %>" type="audio/mpeg">
+        </audio>
+      </div>
 
-		<div class="self-end overflow-hidden w-full">
-			<%= turbo_frame_tag "round_#{round.id}_guesses", class: "w-full h-full" do %>
-				<%= render partial: "guesses/guess", collection: round.guesses %>
-			<% end %>
+      <div class="self-end overflow-hidden w-full">
+        <%= turbo_frame_tag "round_#{round.id}_guesses", class: "w-full h-full" do %>
+          <%= render partial: "guesses/guess", collection: round.guesses %>
+        <% end %>
 
-			<%= form_with model: [round.game, round, Guess.new], data: { controller: "guess-form" } do |f| %>
-				<%= f.hidden_field :song_id, value: round.current_song.id %>
-				<%= f.text_field :content, placeholder: "Take a guess", data: { guess_form_target: "input" }, autofocus: true, class: "w-full" %>
-			<% end %>
-		</div>
-	</div>
+        <%= form_with model: [round.game, round, Guess.new], data: { controller: "guess-form" } do |f| %>
+          <%= f.hidden_field :song_id, value: round.current_song.id %>
+          <%= f.text_field :content, placeholder: "Take a guess", data: { guess_form_target: "input" }, autofocus: true, class: "w-full" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
 <% end %>
