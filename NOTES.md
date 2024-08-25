@@ -35,4 +35,4 @@ TODO
 - model validations
 - necessary edge cases (scoop up from AI chats)
 - player display_name_color, avatar (take from songl.io)
-- design + animations (animate.css, turbo 8 view transitions?)
+- design + animations (animate.css, turbo 8 view transitions?, https://v0.dev/chat/v7u4XVdbDLi)
