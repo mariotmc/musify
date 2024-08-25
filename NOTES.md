@@ -28,12 +28,9 @@ tracks = JSON.parse(response.body)['tracks']['items']
 
 TODO
 
-- round logic
-  - next song/end round button visible for everyone
-    - maybe replace host buttons (remove host concept entirely) with "ready" buttons
-    - every user has to click it and when all users readied up game starts/next song is played
-    - have little icon next to the player names that indicate if they pressed ready (resets after everyone is ready)
-  - if player guessed correctly disable their input (idk if overkill for mvp)
+- replace "next song", "end round" buttons with "ready" buttons
+  - set unready for all players when all ready in #start_if_all_ready and copy buttons from start game approach
+- if player guessed correctly disable their input (idk if overkill for mvp)
 - start new round after all songs played (create new round, all players have to ready up)
 - model validations
 - necessary edge cases (scoop up from AI chats)

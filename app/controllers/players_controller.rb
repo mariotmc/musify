@@ -11,11 +11,16 @@ class PlayersController < ApplicationController
       delete_player_from_existing_lobbies(Current.player) if Current.player
       session[:player_id] = @player.id
       Current.player = Player.find(session[:player_id])
-      @player.update!(host: true) if @player.lobby.players.size == 1
       redirect_to lobby_path(@player.lobby.code)
     else
       render :new, status: :unprocessable_entity
     end
+  end
+
+  def update
+    player = Player.find(session[:player_id])
+    player.update!(player_params)
+    head :ok
   end
 
   def destroy
@@ -28,7 +33,7 @@ class PlayersController < ApplicationController
 
   private
     def player_params
-      params.require(:player).permit(:lobby_id, :name)
+      params.require(:player).permit(:lobby_id, :name, :ready)
     end
 
     def delete_player_from_existing_lobbies(player)

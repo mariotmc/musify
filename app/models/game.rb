@@ -13,4 +13,16 @@ class Game < ApplicationRecord
   def broadcast_game_started
     broadcast_replace_to("game_#{id}", partial: "games/game", locals: { game: self }, target: "game_#{id}")
   end
+
+  def broadcast_player_ready(player)
+    broadcast_replace_to("lobby_#{player.lobby.id}_players", partial: "players/player", locals: { player: player }, target: "player_#{player.id}")
+  end
+
+  def all_players_ready?
+    players.all?(&:ready?)
+  end
+
+  def start_if_all_ready
+    update!(status: "started") if all_players_ready?
+  end
 end

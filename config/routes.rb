@@ -4,9 +4,13 @@ Rails.application.routes.draw do
   resources :lobbies, param: :code, only: [:index, :create, :show]
   delete "lobbies", to: "lobbies#destroy"
 
-  resources :players, only: [:new, :create, :destroy]
+  resources :players, only: [:new, :create, :update, :destroy]
 
   resources :games, only: [:update] do
+    member do
+      post "ready"
+      post "unready"
+    end
     resources :rounds, only: [:create, :update] do
       resources :songs, only: [:new, :create]
       resources :guesses, only: [:create]
