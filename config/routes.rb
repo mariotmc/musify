@@ -12,6 +12,10 @@ Rails.application.routes.draw do
       post "unready"
     end
     resources :rounds, only: [:create, :update] do
+      member do
+        post "ready"
+        post "unready"
+      end
       resources :songs, only: [:new, :create]
       resources :guesses, only: [:create]
     end

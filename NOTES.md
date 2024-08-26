@@ -28,9 +28,13 @@ tracks = JSON.parse(response.body)['tracks']['items']
 
 TODO
 
-- current_song.record_start_time! is blowing up on second song (prob no song time recorded)
-- ready buttons for scoreboard (in model it should decide if it's next song or next round)
-- start new round after all songs played (create new round, all players have to ready up)
+- with > 1 player it appends all guesses to the chat but doesn't evaluate and plays always plays the first song (songs def saved correctly)
+  - guess evaluation works when first song played for the second time (maybe something off with inital rounds/started render (Current.player changes related?))
+- start new round after all songs played (create new round when all players ready)
+  - rounds/ended needs to show scoreboard + new round ready button
+  - maybe ended needs to emulate rounds/waiting and when all players ready we broadcast rounds/started?
+  - def need new round broadcasts (broadcast_new_round_waiting, broadcast_new_round_started)
+  - needs to set previous round current to false and new round as current
 - if player guessed correctly disable their input (idk if overkill for mvp)
 - remove redundant turbo_stream_from calls and reduce turbo_frame_tag names since it's user scoped
 - model validations
