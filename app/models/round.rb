@@ -10,7 +10,9 @@ class Round < ApplicationRecord
   scope :current, -> { where(current: true) }
 
   def broadcast_round
-    broadcast_replace_to("round_#{id}", target: "round_#{id}", partial: "rounds/round", locals: { round: self })
+    players.each do |player|
+      broadcast_replace_to("lobby_#{lobby.id}_player_#{player.id}", target: "round_#{id}", partial: "rounds/round", locals: { round: self, player: player })
+    end
   end
 
   def start
