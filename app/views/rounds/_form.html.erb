@@ -3,7 +3,7 @@
 <%= turbo_frame_tag "song_search_query", class: "w-full" do %>
 	<%= form_with url: song_searches_path, method: :get, data: { turbo_stream: true, controller: "guess-form" } do %>
 		<%= hidden_field_tag :round_id, round.id %>
-		<%= hidden_field_tag :player_id, Current.player.id %>
+		<%= hidden_field_tag :player_id, player.id %>
 		<%= text_field_tag :query, params[:query], data: { guess_form_target: "input" }, autofocus: true, placeholder: "Search for a song..." %>
 	<% end %>
 

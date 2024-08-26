@@ -1,7 +1,7 @@
 <%= turbo_frame_tag round, class: "w-full" do %>
-	<% if Current.player.created_song_for_current_round? %>
+	<% if player.created_song_for_current_round? %>
 		<p>Waiting for other players to pick songs</p>
 	<% else %>
-		<%= render "rounds/form", round: round %>
+		<%= render "rounds/form", round: round, player: player %>
 	<% end %>
 <% end %>

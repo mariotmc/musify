@@ -1,7 +1,8 @@
+<%= turbo_stream_from "lobby_#{@lobby.id}_player_#{Current.player.id}" %>
 <%= turbo_stream_from "lobby_#{@lobby.id}_players", data: { test: "lobby_#{@lobby.id}_players" } %>
 <%= turbo_stream_from "game_#{@lobby.game.id}", data: { test: "game_#{@lobby.game.id}" } %>
 
-<div class="flex w-full p-2">
+<%= turbo_frame_tag "lobby_#{@lobby.id}_player_#{Current.player.id}", class: "flex w-full p-2" do %>
   <%= turbo_frame_tag "lobby_#{@lobby.id}_players", class: "p-3 border border-gray-200" do %>
     <% @lobby.players.each do |player| %>
       <%= render player %>
@@ -10,6 +11,6 @@
   <% end %>
 
   <%= turbo_frame_tag "game_#{@lobby.game.id}", class: "flex-1 w-full" do %>
-    <%= render @lobby.game %>
+    <%= render @lobby.game, player: Current.player %>
   <% end %>
-</div>
+<% end %>

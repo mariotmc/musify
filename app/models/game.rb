@@ -11,7 +11,9 @@ class Game < ApplicationRecord
   after_update_commit -> { broadcast_game_started if saved_change_to_status? && started? }
 
   def broadcast_game_started
-    broadcast_replace_to("game_#{id}", partial: "games/game", locals: { game: self }, target: "game_#{id}")
+    players.each do |player|
+      broadcast_replace_to("lobby_#{lobby.id}_player_#{player.id}", partial: "games/game", locals: { game: self, player: player }, target: "game_#{id}")
+    end
   end
 
   def broadcast_player_ready(player)

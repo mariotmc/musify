@@ -1,9 +1,9 @@
 <% if round.started? %>
-	<%= render partial: "rounds/started", locals: { round: round } %>
+	<%= render partial: "rounds/started", locals: { round: round, player: player } %>
 <% elsif round.waiting? %>
-	<%= render partial: "rounds/waiting", locals: { round: round } %>
+	<%= render partial: "rounds/waiting", locals: { round: round, player: player } %>
 <% elsif round.scoreboard? %>
-	<%= render partial: "rounds/scoreboard", locals: { round: round } %>
+	<%= render partial: "rounds/scoreboard", locals: { round: round, player: player } %>
 <% elsif round.ended? %>
-	<%= render partial: "rounds/ended", locals: { round: round } %>
+	<%= render partial: "rounds/ended", locals: { round: round, player: player } %>
 <% end %>

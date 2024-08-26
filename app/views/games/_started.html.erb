@@ -1,5 +1,5 @@
 <%= turbo_stream_from "round_#{game.current_round.id}", data: { test: "round_#{game.current_round.id}" } %>
 
 <%= turbo_frame_tag game, class: "w-full" do %>
-  <%= render game.current_round %>
+  <%= render game.current_round, player: player %>
 <% end %>
