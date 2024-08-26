@@ -28,12 +28,7 @@ tracks = JSON.parse(response.body)['tracks']['items']
 
 TODO
 
-- figure out solution for ready buttons (if nothing works, render start game/next song/end round buttons for all to see)
-  - try turbo_frames that are scoped to the specific user at the lobby level
-  - this way you might be able to have single top level "player_1_frame" that is the only subscribed channel
-  - and for every broadcast you always go e.g. "player_1_frame", target: "round_3", locals: {round: round, player: player}
-  - loop all the players to and target each player's main frame each time (ensures each player only gets theirs updated?)
-- check if disabling turbo cache helps with current user issue (check again with passing player specifically)
+- refactor Current.player to player in all round partials (follow game flow)
 - current_song.record_start_time! is blowing up on second song (prob no song time recorded)
 - if player guessed correctly disable their input (idk if overkill for mvp)
 - start new round after all songs played (create new round, all players have to ready up)
