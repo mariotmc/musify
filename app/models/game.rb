@@ -23,6 +23,8 @@ class Game < ApplicationRecord
   end
 
   def start_if_all_ready
-    update!(status: "started") if all_players_ready?
+    return unless all_players_ready?
+    players.each { |player| player.update!(ready: false) }
+    update!(status: "started")
   end
 end
