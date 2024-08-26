@@ -28,10 +28,11 @@ tracks = JSON.parse(response.body)['tracks']['items']
 
 TODO
 
-- refactor Current.player to player in all round partials (follow game flow)
 - current_song.record_start_time! is blowing up on second song (prob no song time recorded)
-- if player guessed correctly disable their input (idk if overkill for mvp)
+- ready buttons for scoreboard (in model it should decide if it's next song or next round)
 - start new round after all songs played (create new round, all players have to ready up)
+- if player guessed correctly disable their input (idk if overkill for mvp)
+- remove redundant turbo_stream_from calls and reduce turbo_frame_tag names since it's user scoped
 - model validations
 - necessary edge cases (scoop up from AI chats)
 - player display_name_color, avatar (take from songl.io)
