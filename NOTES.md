@@ -28,8 +28,9 @@ tracks = JSON.parse(response.body)['tracks']['items']
 
 TODO
 
-- replace "next song", "end round" buttons with "ready" buttons
-  - set unready for all players when all ready in #start_if_all_ready and copy buttons from start game approach
+- figure out solution for ready buttons (if nothing works, render start game/next song/end round buttons for all to see)
+- check if disabling turbo cache helps with current user issue (check again with passing player specifically)
+- current_song.record_start_time! is blowing up on second song (prob no song time recorded)
 - if player guessed correctly disable their input (idk if overkill for mvp)
 - start new round after all songs played (create new round, all players have to ready up)
 - model validations
