@@ -28,7 +28,8 @@ tracks = JSON.parse(response.body)['tracks']['items']
 
 TODO
 
-- if player guessed correctly disable their input (idk if overkill for mvp)
+- if player guessed correctly disable their input
+- players shouldn't be able to guess their own songs (owner gets points 50 per points per correct guess capped at 200)
 - start new round after all songs played (create new round when all players ready)
   - rounds/ended needs to show scoreboard + new round ready button
   - maybe ended needs to emulate rounds/waiting and when all players ready we broadcast rounds/started?
@@ -39,3 +40,4 @@ TODO
 - necessary edge cases (scoop up from AI chats)
 - player display_name_color, avatar (take from songl.io)
 - design + animations (animate.css, turbo 8 view transitions?, https://v0.dev/chat/v7u4XVdbDLi)
+- favicon
