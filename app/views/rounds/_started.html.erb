@@ -6,7 +6,7 @@
 
     <div class="flex gap-10">
       <div>
-        <%= image_tag round.current_song.image, data: { timer_target: "image"},  class: "max-w-40 h-auto rounded-lg transition-all" %>
+        <%= image_tag round.current_song.image, loading: "lazy", data: { timer_target: "image"}, class: "max-w-40 h-auto rounded-lg transition-all" %>
         <p data-controller="hint"
            data-hint-initial-hint-value="<%= round.current_song.initial_hint %>"
            data-hint-first-letter-hint-value="<%= round.current_song.hint_with_first_letters %>"
@@ -26,7 +26,15 @@
 
         <%= form_with model: [round.game, round, Guess.new], data: { controller: "guess-form" } do |f| %>
           <%= f.hidden_field :song_id, value: round.current_song.id %>
-          <%= f.text_field :content, placeholder: "Take a guess", data: { guess_form_target: "input" }, autofocus: true, class: "w-full" %>
+          <%= f.hidden_field :player_id, value: player.id %>
+
+          <%= turbo_frame_tag "round_#{round.id}_guesses_input" do %>
+            <% if round.current_song.player == player %>
+              <%= f.text_field :content, placeholder: "Not allowed to guess your own song", disabled: true, class: "w-full cursor-not-allowed" %>
+            <% else %>
+              <%= f.text_field :content, placeholder: "Take a guess", data: { guess_form_target: "input" }, autofocus: true, class: "w-full" %>
+            <% end %>
+          <% end %>
         <% end %>
       </div>
     </div>

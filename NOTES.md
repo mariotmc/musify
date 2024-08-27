@@ -28,8 +28,7 @@ tracks = JSON.parse(response.body)['tracks']['items']
 
 TODO
 
-- if player guessed correctly disable their input
-- players shouldn't be able to guess their own songs (owner gets points 50 per points per correct guess capped at 200)
+- if player guessed correctly disable their input (TEST THIS -> need 3 players)
 - start new round after all songs played (create new round when all players ready)
   - rounds/ended needs to show scoreboard + new round ready button
   - maybe ended needs to emulate rounds/waiting and when all players ready we broadcast rounds/started?
@@ -38,6 +37,6 @@ TODO
 - remove redundant turbo_stream_from calls and reduce turbo_frame_tag names since it's user scoped
 - model validations
 - necessary edge cases (scoop up from AI chats)
-- player display_name_color, avatar (take from songl.io)
-- design + animations (animate.css, turbo 8 view transitions?, https://v0.dev/chat/v7u4XVdbDLi)
+- player display_name_color, avatars
+- design (scoring system explanation in pre round lobby, disclaimer that Spotify API might not have every song in song searches form view) + animations (animate.css, turbo 8 view transitions?, https://v0.dev/chat/v7u4XVdbDLi, https://v0.dev/chat/l2KRrtd1zvk)
 - favicon

@@ -1,0 +1,5 @@
+<% if !@round.all_players_guessed_correctly? && @player.guessed_song_correctly?(song: @round.current_song) %>
+	<%= turbo_stream.update "round_#{@round.id}_guesses_input" do %>
+		<%= f.text_field :content, placeholder: "Not allowed to guess your own song", disabled: true, class: "w-full cursor-not-allowed" %>
+	<% end %>
+<% end %>

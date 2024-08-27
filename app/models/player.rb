@@ -26,11 +26,20 @@ class Player < ApplicationRecord
     songs.exists?(round: lobby.game.current_round)
   end
 
+  def guessed_song_correctly?(song:)
+    guesses.exists?(song: song, correct: true)
+  end
+
   def add_points!(started:, ended:)
     points_per_second = 10
     max_time = 30
     time_left = ended.to_i - started.to_i
     points = (max_time - time_left) * points_per_second
-    update!(score: points)
+    update!(score: self.score + points)
+  end
+
+  def add_points_for_song_owner!(correct_guesses:)
+    points_per_correct_guess = 50
+    update!(score: self.score + (correct_guesses * points_per_correct_guess))
   end
 end

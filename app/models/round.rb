@@ -50,7 +50,7 @@ class Round < ApplicationRecord
 
   def all_players_guessed_correctly?
     correct_guesses_for_current_song = guesses.where(song: current_song, correct: true).size
-    correct_guesses_for_current_song == game.players.size
+    correct_guesses_for_current_song == game.players.size - 1
   end
 
   def start_if_all_ready

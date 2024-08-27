@@ -13,7 +13,10 @@ class Guess < ApplicationRecord
   def mark_correct!
     player.add_points!(started: round.current_song.started_at, ended: Time.current)
     update!(correct: true)
-    round.finish_current_song! if round.all_players_guessed_correctly?
+    if round.all_players_guessed_correctly?
+      round.current_song.player.add_points_for_song_owner!(correct_guesses: round.guesses.where(song: round.current_song, correct: true).size)
+      round.finish_current_song!
+    end
   end
 
   def check_guess
