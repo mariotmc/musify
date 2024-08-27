@@ -14,6 +14,7 @@ class SongSearchesController < ApplicationController
 
   def create
     @round = Round.find(params[:round_id])
+    @player = Player.find(params[:player_id])
     @song = RSpotify::Track.find(params[:spotify_id])
 
     ActiveRecord::Base.transaction do

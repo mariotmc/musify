@@ -1,3 +1,3 @@
 <%= turbo_stream.replace "song_search_query" do %>
-	<%= render partial: "rounds/waiting", locals: { round: @round } %>
+	<%= render partial: "rounds/waiting", locals: { round: @round, player: @player } %>
 <% end %>

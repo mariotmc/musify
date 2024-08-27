@@ -21,11 +21,11 @@ class Round < ApplicationRecord
   end
 
   def start
-    start_first_song if all_songs_received?
+    next_song! if all_songs_received?
   end
 
   def current_song
-    songs[current_song_index]
+    songs.order(:created_at)[current_song_index]
   end
 
   def finish_current_song!
@@ -41,6 +41,7 @@ class Round < ApplicationRecord
   def next_song!
     update!(status: "started")
     current_song.record_start_time!
+    start_timer
   end
 
   def more_songs?
@@ -59,12 +60,6 @@ class Round < ApplicationRecord
   end
 
   private
-    def start_first_song
-      shuffle_songs
-      next_song!
-      start_timer
-    end
-
     def all_players_ready?
       players.all?(&:ready?)
     end
@@ -75,9 +70,5 @@ class Round < ApplicationRecord
 
     def start_timer
       TimerJob.set(wait: 30.seconds).perform_later(round: self)
-    end
-
-    def shuffle_songs
-      self.songs = self.songs.shuffle
     end
 end
