@@ -25,7 +25,9 @@ class PlayersController < ApplicationController
 
   def destroy
     player = Player.find(session[:player_id])
+    lobby = player.lobby
     player.destroy
+    lobby.destroy if lobby.players.size == 0
     session[:player_id] = nil
     Current.player = nil
     redirect_to root_path
