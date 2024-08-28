@@ -10,9 +10,9 @@ class Round < ApplicationRecord
 
   scope :current, -> { where(current: true) }
 
-  def broadcast_round
+  def broadcast_round(round: self)
     players.each do |player|
-      broadcast_replace_to("lobby_#{game.lobby.id}_player_#{player.id}", target: "round_#{id}", partial: "rounds/round", locals: { round: self, player: player })
+      broadcast_replace_to("lobby_#{game.lobby.id}_player_#{player.id}", target: "round_#{id}", partial: "rounds/round", locals: { round: round, player: player })
     end
   end
 
@@ -33,15 +33,20 @@ class Round < ApplicationRecord
       update!(current_song_index: current_song_index + 1)
       update!(status: "scoreboard")
     else
-      update!(current_song_index: 0)
       update!(status: "ended")
     end
   end
 
   def next_song!
-    update!(status: "started")
-    current_song.record_start_time!
-    start_timer
+    if all_songs_played?
+      update!(current: false)
+      new_round = game.rounds.create!(current: true, status: "waiting")
+      broadcast_round(round: new_round)
+    else
+      update!(status: "started")
+      current_song.record_start_time!
+      start_timer
+    end
   end
 
   def more_songs?
@@ -66,6 +71,10 @@ class Round < ApplicationRecord
 
     def all_songs_received?
       songs.size >= game.lobby.players.size
+    end
+
+    def all_songs_played?
+      ended?
     end
 
     def start_timer

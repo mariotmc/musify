@@ -1,3 +1,20 @@
 <%= turbo_frame_tag round, class: "w-full" do %>
-	<p>ROUND ENDED</p>
+	<h2>Final Standings</h2>
+
+	<% round.game.players.each do |player| %>
+		<%= turbo_frame_tag player do %>
+			<%= player.name %> - <%= player.score %>
+		<% end %>
+	<% end %>
+
+	<h3>Ready up to start a new round </h3>
+
+	<%= turbo_frame_tag "player_#{player.id}_ready" do %>
+		<% if player.ready? %>
+			<p>Waiting for other players...</p>
+			<%= button_to "Not ready", unready_game_round_path(round.game, round, player_id: player.id), method: :post %>
+		<% else %>
+			<%= button_to "Ready", ready_game_round_path(round.game, round, player_id: player.id), method: :post %>
+		<% end %>
+	<% end %>
 <% end %>
