@@ -1,17 +1,4 @@
-https://claude.ai/chat/993faa19-4b90-44a2-951c-67d06af17fed
 https://developer.spotify.com/dashboard/8c6ed9e346ee4138b41deaa656898eaf/settings
-https://www.rubydoc.info/github/guilhermesad/rspotify/master/RSpotify/Player
-https://excalidraw.com/
-
-client_id = 8c6ed9e346ee4138b41deaa656898eaf
-client_secret = 1066e11a240943c8af2ef7e0a31bb455
-
-RSpotify.authenticate("8c6ed9e346ee4138b41deaa656898eaf", "1066e11a240943c8af2ef7e0a31bb455")
-RSpotify::Track.search("do i wanna know?").first.id
-RSpotify::Track.search("do i wanna know?").first.name
-RSpotify::Track.search("do i wanna know?").first.artists
-RSpotify::Track.search("do i wanna know?").first.preview_url
-RSpotify::Track.search("do i wanna know?").first.album.images.second["url"]
 
 PROPER AUTH
 `npm start` auth_code node app
@@ -29,15 +16,10 @@ tracks = JSON.parse(response.body)['tracks']['items']
 TODO
 
 - if player guessed correctly disable their input (TEST THIS -> need 3 players)
-- start new round after all songs played (create new round when all players ready)
-  - rounds/ended needs to show scoreboard + new round ready button
-  - maybe ended needs to emulate rounds/waiting and when all players ready we broadcast rounds/started?
-  - def need new round broadcasts (broadcast_new_round_waiting, broadcast_new_round_started)
-  - needs to set previous round current to false and new round as current
 - check song that have words like "you're" and see how it's displayed and either change how it works or create disclaimer
 - remove redundant turbo_stream_from calls and reduce turbo_frame_tag names since it's user scoped
 - model validations
 - necessary edge cases (scoop up from AI chats)
 - player display_name_color, avatars
-- design (scoring system explanation in pre round lobby, disclaimer that Spotify API might not have every song in song searches form view) + animations (animate.css, turbo 8 view transitions?, https://v0.dev/chat/v7u4XVdbDLi, https://v0.dev/chat/l2KRrtd1zvk)
 - favicon
+- design (scoring system explanation in pre round lobby, disclaimer that Spotify API might not have every song in song searches form view) + animations (animate.css, turbo 8 view transitions?, https://v0.dev/chat/v7u4XVdbDLi, https://v0.dev/chat/l2KRrtd1zvk)
