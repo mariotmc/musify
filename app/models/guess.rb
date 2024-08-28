@@ -28,7 +28,8 @@ class Guess < ApplicationRecord
   end
 
   def correct_guess?
-    normalized_guess == normalized_answer
+    normalized_guess == normalized_answer ||
+    normalized_guess == normalized_answer_without_apostrophes
   end
 
   def close_guess?
@@ -39,14 +40,25 @@ class Guess < ApplicationRecord
   end
 
   def normalized_guess
-    content.strip.downcase.gsub(/[^\w\s]/, '')
+    normalize_string(content)
   end
 
   def normalized_answer
-    round.current_song.display_name.downcase.gsub(/[^\w\s]/, '')
+    normalize_string(round.current_song.display_name)
+  end
+
+  def normalized_answer_without_apostrophes
+    normalize_string(round.current_song.display_name, remove_apostrophes: true)
   end
 
   private
+    def normalize_string(str, remove_apostrophes: false)
+      result = str.strip.downcase
+      result = result.gsub(/[[:punct:]]/, '') if remove_apostrophes
+      result = result.gsub(/[[:punct:]&&[^']]/, '') unless remove_apostrophes
+      result.gsub(/\s+/, ' ')  # Replace multiple spaces with a single space
+    end
+
     def word_by_word_close?
       guess_words = normalized_guess.split
       answer_words = normalized_answer.split
@@ -59,7 +71,8 @@ class Guess < ApplicationRecord
     end
 
     def overall_close?
-      calculate_similarity(normalized_guess, normalized_answer) >= 0.8
+      calculate_similarity(normalized_guess, normalized_answer) >= 0.8 ||
+      calculate_similarity(normalized_guess, normalized_answer_without_apostrophes) >= 0.8
     end
 
     def calculate_similarity(s1, s2)

@@ -8,25 +8,17 @@ class Song < ApplicationRecord
   end
 
   def display_name
-    title.gsub(/\[.*?\]/, '').gsub(/\s*\(?\s*feat\.?.*$/i, '').gsub(/[[:punct:]]/, '').strip.upcase
+    title
+      .gsub(/\[.*?\]/, '') # Remove content in square brackets
+      .gsub(/\s*\(?\s*feat\.?.*$/i, '') # Remove featuring artists
+      .gsub(/[[:punct:]&&[^']]/, '') # Remove all punctuation except apostrophes
+      .strip
+      .upcase
   end
 
   def hint(reveal_type: :none)
-    display_name.split.map do |word|
-      case reveal_type
-      when :first_letter
-        word.length == 1 ? '_' : word[0] + '_' * (word.length - 1)
-      when :both_letters
-        if word.length == 1
-          '_'
-        elsif word.length <= 3
-          word[0] + '_' * (word.length - 1)
-        else
-          word[0] + '_' * (word.length - 2) + word[-1]
-        end
-      else
-        '_' * word.length
-      end
+    display_name.chars.chunk_while { |i, j| i != ' ' && j != ' ' }.map do |word|
+      hint_for_word(word, reveal_type)
     end.join(' ')
   end
 
@@ -41,4 +33,27 @@ class Song < ApplicationRecord
   def hint_with_both_letters
     hint(reveal_type: :both_letters)
   end
+
+  private
+    def hint_for_word(word, reveal_type)
+      word.map.with_index do |char, index|
+        if char == "'"
+          "'"
+        elsif reveal_type == :none
+          char == " " ? " " : "_ "
+        elsif reveal_type == :first_letter
+          if index == 0 && word.length > 1
+            "#{char} "
+          else
+            char == " " ? " " : "_ "
+          end
+        elsif reveal_type == :both_letters
+          if (index == 0 || index == word.length - 1) && word.length > 1
+            "#{char} "
+          else
+            char == " " ? " " : "_ "
+          end
+        end
+      end.join.strip
+    end
 end
