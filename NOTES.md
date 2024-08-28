@@ -34,6 +34,7 @@ TODO
   - maybe ended needs to emulate rounds/waiting and when all players ready we broadcast rounds/started?
   - def need new round broadcasts (broadcast_new_round_waiting, broadcast_new_round_started)
   - needs to set previous round current to false and new round as current
+- check song that have words like "you're" and see how it's displayed and either change how it works or create disclaimer
 - remove redundant turbo_stream_from calls and reduce turbo_frame_tag names since it's user scoped
 - model validations
 - necessary edge cases (scoop up from AI chats)
