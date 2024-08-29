@@ -4,7 +4,6 @@ class GuessesController < ApplicationController
     @player = Player.find(params[:guess][:player_id])
     @guess = @round.guesses.build(guess_params)
     @guess.save!
-    head :ok
   end
 
   private
