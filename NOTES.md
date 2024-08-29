@@ -16,7 +16,6 @@ tracks = JSON.parse(response.body)['tracks']['items']
 TODO
 
 - if player guessed correctly disable their input (TEST THIS -> need 3 players)
-- hint spacing (too much between letters, too little between words)
 - remove redundant turbo_stream_from calls and reduce turbo_frame_tag names since it's user scoped (sometimes channels close for whatever reason which causes weird bugs like "waiting for other playes" when everyone is ready, hopefully reducing amounts of channels && need for turbo_frame ids (bc player can only be in 1 lobby/game/round) will help with this)
 - model validations
 - necessary edge cases (scoop up from AI chats)

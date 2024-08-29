@@ -17,9 +17,9 @@ class Song < ApplicationRecord
   end
 
   def hint(reveal_type: :none)
-    display_name.chars.chunk_while { |i, j| i != ' ' && j != ' ' }.map do |word|
+    display_name.split.map do |word|
       hint_for_word(word, reveal_type)
-    end.join(' ')
+    end.join('  ')
   end
 
   def initial_hint
@@ -36,24 +36,31 @@ class Song < ApplicationRecord
 
   private
     def hint_for_word(word, reveal_type)
-      word.map.with_index do |char, index|
+      word.chars.map.with_index do |char, index|
         if char == "'"
           "'"
         elsif reveal_type == :none
-          char == " " ? " " : "_ "
-        elsif reveal_type == :first_letter
-          if index == 0 && word.length > 1
-            "#{char} "
-          else
-            char == " " ? " " : "_ "
-          end
-        elsif reveal_type == :both_letters
-          if (index == 0 || index == word.length - 1) && word.length > 1
-            "#{char} "
-          else
-            char == " " ? " " : "_ "
-          end
+          '_'
+        else
+          reveal_letter?(word, index, reveal_type) ? char : '_'
         end
-      end.join.strip
+      end.join
+    end
+
+    def reveal_letter?(word, index, reveal_type)
+      case word.length
+      when 1
+        false
+      when 2, 3
+        index == 0 && reveal_type != :none
+      else
+        if reveal_type == :first_letter
+          index == 0
+        elsif reveal_type == :both_letters
+          index == 0 || index == word.length - 1
+        else
+          false
+        end
+      end
     end
 end

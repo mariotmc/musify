@@ -25,6 +25,14 @@ export default class extends Controller {
   }
 
   showHint(hint) {
-    this.hintDisplayTarget.textContent = hint;
+    this.hintDisplayTarget.innerHTML = hint
+      .split(" ")
+      .map((word) => {
+        return `<span class="word">${word
+          .split("")
+          .map((char) => `<span class="letter">${char}</span>`)
+          .join("")}</span>`;
+      })
+      .join("");
   }
 }
