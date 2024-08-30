@@ -1,6 +1,4 @@
 <%= turbo_frame_tag round, class: "w-full" do %>
-  <%= turbo_stream_from "round_#{round.id}_guesses", data: { test: "round_#{round.id}_guesses" } %>
-
   <div data-controller="timer" data-timer-end-time-value="<%= (Time.current + 30.seconds).to_i %>" data-timer-hint-outlet="#hint">
     <span data-timer-target="timerDisplay">30</span>
 
@@ -20,7 +18,7 @@
       </div>
 
       <div class="self-end overflow-hidden w-full">
-        <%= turbo_frame_tag "round_#{round.id}_guesses", class: "w-full h-full" do %>
+        <%= turbo_frame_tag "guesses", class: "w-full h-full" do %>
           <%= render partial: "guesses/guess", collection: round.guesses %>
         <% end %>
 
@@ -28,7 +26,7 @@
           <%= f.hidden_field :song_id, value: round.current_song.id %>
           <%= f.hidden_field :player_id, value: player.id %>
 
-          <%= turbo_frame_tag "round_#{round.id}_guesses_input" do %>
+          <%= turbo_frame_tag "guesses_input" do %>
             <% if round.current_song.player == player %>
               <%= f.text_field :content, placeholder: "Not allowed to guess your own song", disabled: true, class: "w-full cursor-not-allowed" %>
             <% elsif player.guessed_song_correctly?(song: round.current_song) %>

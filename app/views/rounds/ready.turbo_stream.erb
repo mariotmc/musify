@@ -1,4 +1,4 @@
-<%= turbo_stream.update "player_#{@player.id}_ready" do %>
+<%= turbo_stream.update "player_ready" do %>
 	<p>Waiting for other players...</p>
 	<%= button_to "Not ready", unready_game_round_path(@round.game, @round, player_id: @player.id), method: :post %>
 <% end %>

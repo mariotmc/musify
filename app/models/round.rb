@@ -12,12 +12,14 @@ class Round < ApplicationRecord
 
   def broadcast_round(round: self)
     players.each do |player|
-      broadcast_replace_to("lobby_#{game.lobby.id}_player_#{player.id}", target: "round_#{id}", partial: "rounds/round", locals: { round: round, player: player })
+      broadcast_replace_to("player_#{player.id}", target: "round_#{id}", partial: "rounds/round", locals: { round: round, player: player })
     end
   end
 
   def broadcast_player_ready(player)
-    broadcast_replace_to("lobby_#{player.lobby.id}_players", partial: "players/player", locals: { player: player }, target: "player_#{player.id}")
+    players.each do |p|
+      broadcast_replace_to("player_#{p.id}", target: "lobby_#{game.lobby.id}_player_#{player.id}", partial: "players/player", locals: { player: player })
+    end
   end
 
   def start

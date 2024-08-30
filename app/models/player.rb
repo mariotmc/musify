@@ -7,11 +7,15 @@ class Player < ApplicationRecord
   after_destroy_commit -> { broadcast_player_removed }
 
   def broadcast_player_created
-    broadcast_append_to("lobby_#{lobby.id}_players", partial: "players/player", locals: { player: self }, target: "lobby_#{lobby.id}_players")
+    lobby.players.each do |player|
+      broadcast_append_to("player_#{player.id}", target: "players", partial: "players/player", locals: { player: self })
+    end
   end
 
   def broadcast_player_removed
-    broadcast_remove_to("lobby_#{lobby.id}_players", target: "player_#{self.id}")
+    lobby.players.each do |player|
+      broadcast_remove_to("player_#{player.id}", target: "lobby_#{lobby.id}_player_#{id}")
+    end
   end
 
   def ready!

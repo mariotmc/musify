@@ -1,5 +1,5 @@
 <% if !@round.all_players_guessed_correctly? && @player.guessed_song_correctly?(song: @round.current_song) %>
-	<%= turbo_stream.update "round_#{@round.id}_guesses_input" do %>
+	<%= turbo_stream.update "guesses_input" do %>
 		<%= text_field_tag :content, nil, { disabled: true, class: "w-full cursor-not-allowed" } %>
 	<% end %>
 <% end %>

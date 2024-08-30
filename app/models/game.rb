@@ -12,12 +12,14 @@ class Game < ApplicationRecord
 
   def broadcast_game_started
     players.each do |player|
-      broadcast_replace_to("lobby_#{lobby.id}_player_#{player.id}", partial: "games/game", locals: { game: self, player: player }, target: "game_#{id}")
+      broadcast_replace_to("player_#{player.id}", target: "game", partial: "games/game", locals: { game: self, player: player })
     end
   end
 
   def broadcast_player_ready(player)
-    broadcast_replace_to("lobby_#{player.lobby.id}_players", partial: "players/player", locals: { player: player }, target: "player_#{player.id}")
+    players.each do |p|
+      broadcast_replace_to("player_#{p.id}", target: "lobby_#{lobby.id}_player_#{player.id}", partial: "players/player", locals: { player: player })
+    end
   end
 
   def all_players_ready?

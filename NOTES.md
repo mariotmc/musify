@@ -15,9 +15,14 @@ tracks = JSON.parse(response.body)['tracks']['items']
 
 TODO
 
-- remove redundant turbo_stream_from calls and reduce turbo_frame_tag names since it's user scoped (sometimes channels close for whatever reason which causes weird bugs like "waiting for other playes" when everyone is ready, hopefully reducing amounts of channels && need for turbo_frame ids (bc player can only be in 1 lobby/game/round) will help with this)
 - model validations
-- necessary edge cases (scoop up from AI chats, when do websocket connections go stale with action cable?)
 - player display_name_color, avatars
+- players ready status always shows "ready" after initial ready up
+  - after initial ready up need to broadcast that players are not ready (better to not show it at all)
+  - maybe move ready status from players list to game screen (show with avatar + name when status is relevant)
+- necessary edge cases (scoop up from AI chats, when do websocket connections go stale with action cable?)
 - favicon
-- design (scoring system explanation in pre round lobby, disclaimer that Spotify API might not have every song in song searches form view) + animations (animate.css, turbo 8 view transitions?, https://v0.dev/chat/v7u4XVdbDLi, https://v0.dev/chat/l2KRrtd1zvk)
+- design
+  - scoring system explanation in pre round lobby
+  - disclaimer that Spotify API might not have every song in song searches form view
+  - animations (animate.css, turbo 8 view transitions, https://v0.dev/chat/v7u4XVdbDLi, https://v0.dev/chat/l2KRrtd1zvk)

@@ -7,7 +7,9 @@ class Guess < ApplicationRecord
   after_create_commit :broadcast_guess
 
   def broadcast_guess
-    broadcast_append_to("round_#{round.id}_guesses", target: "round_#{round.id}_guesses", partial: "guesses/guess", locals: { guess: self })
+    round.players.each do |player|
+      broadcast_append_to("player_#{player.id}", target: "guesses", partial: "guesses/guess", locals: { guess: self })
+    end
   end
 
   def mark_correct!

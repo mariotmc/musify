@@ -1,4 +1,4 @@
-<%= turbo_frame_tag "player_#{Current.player.id}_ready" do %>
+<%= turbo_frame_tag "player_ready" do %>
 	<% if Current.player.ready? %>
 		<p>Waiting for other players...</p>
 		<%= button_to "Not ready", unready_game_path(@lobby.game, player_id: Current.player.id), method: :post %>
