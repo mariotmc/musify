@@ -5,7 +5,7 @@ class PlayersController < ApplicationController
   end
 
   def create
-    @player = Player.create!(player_params)
+    @player = Player.new(player_params)
 
     if @player.save
       delete_player_from_existing_lobbies(Current.player) if Current.player
@@ -35,7 +35,7 @@ class PlayersController < ApplicationController
 
   private
     def player_params
-      params.require(:player).permit(:lobby_id, :name, :ready)
+      params.require(:player).permit(:name, :lobby_id, :avatar, :color)
     end
 
     def delete_player_from_existing_lobbies(player)

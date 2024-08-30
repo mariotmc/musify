@@ -1,10 +1,15 @@
 class Player < ApplicationRecord
+  AVATARS = %w[elephant fox giraffe koala monkey panda penguin polar_bear rabbit raccoon sloth tiger]
+  COLORS = %w[red orange amber yellow lime green emerald teal sky blue indigo violet purple fuchsia pink rose]
+
   belongs_to :lobby
   has_many :songs, dependent: :destroy
   has_many :guesses, dependent: :destroy
+  has_one_attached :avatar
 
   validates :lobby_id, presence: true
   validates :name, presence: true, length: { maximum: 50 }
+  validates :color, presence: true, inclusion: { in: COLORS }
   validates :score, numericality: { greater_than_or_equal_to: 0 }
 
   after_create_commit :broadcast_player_created

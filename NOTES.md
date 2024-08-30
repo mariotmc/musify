@@ -15,7 +15,6 @@ tracks = JSON.parse(response.body)['tracks']['items']
 
 TODO
 
-- player display_name_color, avatars
 - players ready status always shows "ready" after initial ready up
   - after initial ready up need to broadcast that players are not ready (better to not show it at all)
   - maybe move ready status from players list to game screen (show with avatar + name when status is relevant)
