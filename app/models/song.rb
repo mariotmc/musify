@@ -3,15 +3,17 @@ class Song < ApplicationRecord
   belongs_to :player
   has_many :guesses, dependent: :destroy
 
+  validates :round_id, :player_id, :spotify_id, :title, :artist, :preview_url, presence: true
+
   def record_start_time!
     update!(started_at: Time.current)
   end
 
   def display_name
     title
-      .gsub(/\[.*?\]/, '') # Remove content in square brackets
-      .gsub(/\s*\(?\s*feat\.?.*$/i, '') # Remove featuring artists
-      .gsub(/[[:punct:]&&[^']]/, '') # Remove all punctuation except apostrophes
+      .gsub(/\[.*?\]/, '') # remove square brackets + their content
+      .gsub(/\s*\(?\s*feat\.?.*$/i, '') # remove round brackets + their content
+      .gsub(/[[:punct:]&&[^']]/, '') # remove all punctuation except apostrophes
       .strip
       .upcase
   end

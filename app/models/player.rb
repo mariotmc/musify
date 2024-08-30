@@ -3,8 +3,12 @@ class Player < ApplicationRecord
   has_many :songs, dependent: :destroy
   has_many :guesses, dependent: :destroy
 
-  after_create_commit -> { broadcast_player_created }
-  after_destroy_commit -> { broadcast_player_removed }
+  validates :lobby_id, presence: true
+  validates :name, presence: true, length: { maximum: 50 }
+  validates :score, numericality: { greater_than_or_equal_to: 0 }
+
+  after_create_commit :broadcast_player_created
+  after_destroy_commit :broadcast_player_removed
 
   def broadcast_player_created
     lobby.players.each do |player|

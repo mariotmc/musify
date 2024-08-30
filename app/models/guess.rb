@@ -3,6 +3,9 @@ class Guess < ApplicationRecord
   belongs_to :round
   belongs_to :song
 
+  validates :player_id, :round_id, :song_id, presence: true
+  validates :content, presence: true, length: { maximum: 100 }
+
   after_create :check_guess
   after_create_commit :broadcast_guess
 

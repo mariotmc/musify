@@ -4,9 +4,13 @@ class Round < ApplicationRecord
   has_many :songs, dependent: :destroy
   has_many :guesses, dependent: :destroy
 
-  after_update_commit -> { broadcast_round }, if: -> { saved_change_to_status? && !waiting? }
-
   enum status: { waiting: 0, started: 1, scoreboard: 2, ended: 3 }
+
+  validates :game_id, presence: true
+  validates :status, presence: true, inclusion: { in: statuses.keys }
+  validates :current_song_index, numericality: { greater_than_or_equal_to: 0 }
+
+  after_update_commit :broadcast_round, if: -> { saved_change_to_status? && !waiting? }
 
   scope :current, -> { where(current: true) }
 
@@ -80,6 +84,6 @@ class Round < ApplicationRecord
     end
 
     def start_timer
-      TimerJob.set(wait: 30.seconds).perform_later(round: self)
+      TimerJob.set(wait: 30.seconds).perform_later(round: self, song: self.current_song)
     end
 end
