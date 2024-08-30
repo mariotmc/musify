@@ -15,11 +15,12 @@ tracks = JSON.parse(response.body)['tracks']['items']
 
 TODO
 
-- players ready status always shows "ready" after initial ready up
-  - after initial ready up need to broadcast that players are not ready (better to not show it at all)
-  - maybe move ready status from players list to game screen (show with avatar + name when status is relevant)
-- necessary edge cases (scoop up from AI chats, when do websocket connections go stale with action cable?)
-- favicon
+- move ready status from players list to game screen (show with avatar + name)
+  - required in games/waiting, rounds/scoreboard, rounds/ended (ready/unready turbo streams games and rounds?)
+  - need to modify how current player ready broadcast works (as placement changes and possibly turbo frame ids)
+- points need to be updated on left players list every time they change
+- necessary edge cases (scoop up from AI chats)
+- icon + favicon
 - design
   - scoring system explanation in pre round lobby
   - disclaimer that Spotify API might not have every song in song searches form view
