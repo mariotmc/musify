@@ -16,6 +16,7 @@ tracks = JSON.parse(response.body)['tracks']['items']
 TODO
 
 - points need to be updated on left players list every time they change
+- display errors in player creation (custom validations for custom error messages?)
 - necessary edge cases (scoop up from AI chats)
 - icon + favicon
 - design

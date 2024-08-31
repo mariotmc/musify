@@ -13,6 +13,7 @@ class PlayersController < ApplicationController
       Current.player = Player.find(session[:player_id])
       redirect_to lobby_path(@player.lobby.code)
     else
+      @lobby = Lobby.find(params[:lobby_id])
       render :new, status: :unprocessable_entity
     end
   end
