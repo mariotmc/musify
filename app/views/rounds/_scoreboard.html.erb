@@ -9,12 +9,5 @@
 		<% end %>
 	<% end %>
 
-	<%= turbo_frame_tag "player_ready" do %>
-		<% if player.ready? %>
-			<p>Waiting for other players...</p>
-			<%= button_to "Not ready", unready_game_round_path(round.game, round, player_id: player.id), method: :post %>
-		<% else %>
-			<%= button_to "Ready", ready_game_round_path(round.game, round, player_id: player.id), method: :post %>
-		<% end %>
-	<% end %>
+	<%= render partial: "ready/round", locals: { player: player, game: round.game, round: round } %>
 <% end %>

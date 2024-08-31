@@ -1,0 +1,7 @@
+<%= turbo_frame_tag "ready" do %>
+	<% if player.ready? %>
+		<%= render partial: "ready/round_unready", locals: { game: game, round: round, player: player } %>
+	<% else %>
+		<%= render partial: "ready/round_ready", locals: { game: game, round: round, player: player } %>
+	<% end %>
+<% end %>

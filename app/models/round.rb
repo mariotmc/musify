@@ -84,6 +84,6 @@ class Round < ApplicationRecord
     end
 
     def start_timer
-      TimerJob.set(wait: 30.seconds).perform_later(round: self, song: self.current_song)
+      TimerJob.set(wait: 10.seconds).perform_later(round: self, song: self.current_song)
     end
 end

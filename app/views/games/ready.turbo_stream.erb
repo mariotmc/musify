@@ -1,4 +1,3 @@
-<%= turbo_stream.update "player_ready" do %>
-	<p>Waiting for other players...</p>
-	<%= button_to "Not ready", unready_game_path(@game, player_id: @player.id), method: :post %>
+<%= turbo_stream.update "ready" do %>
+	<%= render partial: "ready/game_unready", locals: { game: @game, player: @player } %>
 <% end %>
