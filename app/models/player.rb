@@ -19,12 +19,14 @@ class Player < ApplicationRecord
   def broadcast_player_created
     lobby.players.each do |player|
       broadcast_append_to("player_#{player.id}", target: "players", partial: "players/player", locals: { player: self })
+      broadcast_replace_to("player_#{player.id}", target: "ready_players", partial: "ready/players", locals: { players: lobby.players })
     end
   end
 
   def broadcast_player_removed
     lobby.players.each do |player|
       broadcast_remove_to("player_#{player.id}", target: "lobby_#{lobby.id}_player_#{id}")
+      broadcast_remove_to("player_#{player.id}", target: "player_#{id}_ready")
     end
   end
 

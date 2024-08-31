@@ -1,1 +1,1 @@
-<%= render partial: "ready/game", locals: { player: Current.player, game: @lobby.game } %>
+<%= render partial: "ready/game", locals: { game: @lobby.game,  players: @lobby.game.players, player: Current.player } %>

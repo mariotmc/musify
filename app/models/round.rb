@@ -22,7 +22,7 @@ class Round < ApplicationRecord
 
   def broadcast_player_ready(player)
     players.each do |p|
-      broadcast_update_to("player_#{p.id}", target: "ready_players", partial: "ready/players", locals: { players: players })
+      broadcast_replace_to("player_#{p.id}", target: "player_#{player.id}_ready_button", partial: "ready/player_button", locals: { player: player })
     end
   end
 
@@ -84,6 +84,6 @@ class Round < ApplicationRecord
     end
 
     def start_timer
-      TimerJob.set(wait: 10.seconds).perform_later(round: self, song: self.current_song)
+      TimerJob.set(wait: 30.seconds).perform_later(round: self, song: self.current_song)
     end
 end

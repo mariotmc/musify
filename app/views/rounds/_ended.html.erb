@@ -1,7 +1,7 @@
 <%= turbo_frame_tag round, class: "w-full" do %>
 	<h2>Final Standings</h2>
 
-	<% round.game.players.each do |player| %>
+	<% round.players.each do |player| %>
 		<%= turbo_frame_tag player do %>
 			<%= player.name %> - <%= player.score %>
 		<% end %>
@@ -9,5 +9,5 @@
 
 	<h3>Ready up to start a new round </h3>
 
-	<%= render partial: "ready/round", locals: { player: player, game: round.game, round: round } %>
+	<%= render partial: "ready/round", locals: { game: round.game, round: round, players: round.players, player: player } %>
 <% end %>

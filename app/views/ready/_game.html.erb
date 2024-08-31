@@ -1,3 +1,5 @@
+<%= render partial: "ready/players", locals: { players: players } %>
+
 <%= turbo_frame_tag "ready" do %>
 	<% if player.ready? %>
 		<%= render partial: "ready/game_unready", locals: { game: game, player: player } %>

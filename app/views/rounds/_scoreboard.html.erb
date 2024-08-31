@@ -2,12 +2,12 @@
 	<%= turbo_frame_tag "scoreboard" do %>
 		<h2>Standings</h2>
 
-		<% round.game.players.each do |player| %>
+		<% round.players.each do |player| %>
 			<%= turbo_frame_tag player do %>
 				<%= player.name %> - <%= player.score %>
 			<% end %>
 		<% end %>
 	<% end %>
 
-	<%= render partial: "ready/round", locals: { player: player, game: round.game, round: round } %>
+	<%= render partial: "ready/round", locals: { player: player, game: round.game, round: round, players: round.players } %>
 <% end %>

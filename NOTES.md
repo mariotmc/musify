@@ -15,8 +15,6 @@ tracks = JSON.parse(response.body)['tracks']['items']
 
 TODO
 
-- move ready status from players list to game screen (show with avatar + name)
-  - broadcast should only change the ready status text (own turbo_frame, looks like refresh otherwise)
 - points need to be updated on left players list every time they change
 - necessary edge cases (scoop up from AI chats)
 - icon + favicon
