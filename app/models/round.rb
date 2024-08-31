@@ -22,7 +22,7 @@ class Round < ApplicationRecord
 
   def broadcast_player_ready(player)
     players.each do |p|
-      broadcast_replace_to("player_#{p.id}", target: "lobby_#{game.lobby.id}_player_#{player.id}", partial: "players/player", locals: { player: player })
+      broadcast_update_to("player_#{p.id}", target: "ready_players", partial: "ready/players", locals: { players: players })
     end
   end
 
