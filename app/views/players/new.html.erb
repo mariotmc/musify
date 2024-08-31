@@ -21,8 +21,8 @@
 
             <div class="mt-2 flex justify-center flex-wrap gap-2">
               <% Player::AVATARS.each_with_index do |avatar, index| %>
-                <div data-avatar-selection-target="option" data-action="click->avatar-selection#select" class="avatar-option cursor-pointer rounded-full bg-skye-200" data-avatar="<%= avatar %>">
-                  <%= image_tag "avatars/#{avatar}.png", class: "w-12 h-12 rounded-full bg-red-500" %>
+                <div data-avatar-selection-target="option" data-action="click->avatar-selection#select" data-avatar="<%= avatar %>" class="avatar-option cursor-pointer rounded-full" style="background-color: <%= Player::AVATAR_BACKGROUND_COLORS[index] %>">
+                  <%= image_tag "avatars/#{avatar}.png", class: "w-12 h-12 rounded-full" %>
                 </div>
               <% end %>
             </div>

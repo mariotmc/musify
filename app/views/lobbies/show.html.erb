@@ -1,7 +1,7 @@
 <%= turbo_stream_from dom_id(Current.player) %>
 
 <%= turbo_frame_tag dom_id(Current.player), class: "flex w-full p-2" do %>
-  <%= turbo_frame_tag "players", class: "p-3 border border-gray-200" do %>
+  <%= turbo_frame_tag "players", class: "flex flex-col items-center justify-center gap-3 p-3 border border-gray-200" do %>
     <% @lobby.players.each do |player| %>
       <%= render player %>
     <% end %>

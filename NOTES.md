@@ -15,8 +15,6 @@ tracks = JSON.parse(response.body)['tracks']['items']
 
 TODO
 
-- create a constant in player that has the background color picked out from each avatar
-  - use it to fill out the bg color of the image like this Player::BACKGROUNDS[index]
 - move ready status from players list to game screen (show with avatar + name)
   - required in games/waiting, rounds/scoreboard, rounds/ended (ready/unready turbo streams games and rounds?)
   - need to modify how current player ready broadcast works (as placement changes and possibly turbo frame ids)

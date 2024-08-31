@@ -4,7 +4,7 @@
 	<% elsif guess.close? %>
 		<p class="text-yellow-500 text-sm"><%= guess.player.name %> was close!</p>
 	<% else %>
-		<p class="text-blue-500 text-sm"><%= guess.player.name %></p>
+		<p class="text-<%= guess.player.color %>-500 text-sm"><%= guess.player.name %></p>
 		<p class="text-gray-500 text-sm"><%= guess.content %></p>
 	<% end %>
 <% end %>

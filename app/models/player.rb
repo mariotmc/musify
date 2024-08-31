@@ -1,5 +1,6 @@
 class Player < ApplicationRecord
   AVATARS = %w[elephant fox giraffe koala monkey panda penguin polar_bear rabbit raccoon sloth tiger]
+  AVATAR_BACKGROUND_COLORS = %w[#ff8387 #cef0a6 #9ae3f4 #b1eeff #c3b9fe #ffafbe #91ecef #91e0fe #93e0fe #d5a1f6 #a1e696 #c394e0]
   COLORS = %w[red orange amber yellow lime green emerald teal sky blue indigo violet purple fuchsia pink rose]
 
   belongs_to :lobby
@@ -8,7 +9,7 @@ class Player < ApplicationRecord
   has_one_attached :avatar
 
   validates :lobby_id, presence: true
-  validates :name, presence: true, length: { maximum: 50 }
+  validates :name, presence: true, length: { maximum: 20 }
   validates :color, presence: true, inclusion: { in: COLORS }
   validates :score, numericality: { greater_than_or_equal_to: 0 }
 
@@ -54,5 +55,11 @@ class Player < ApplicationRecord
   def add_points_for_song_owner!(correct_guesses:)
     points_per_correct_guess = 50
     update!(score: self.score + (correct_guesses * points_per_correct_guess))
+  end
+
+  def avatar_bg_color
+    avatar_name = avatar.attachment.blob[:filename].gsub(/\.png\z/, "")
+    index = AVATARS.find_index(avatar_name)
+    AVATAR_BACKGROUND_COLORS[index]
   end
 end
