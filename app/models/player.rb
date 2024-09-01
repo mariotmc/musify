@@ -8,9 +8,9 @@ class Player < ApplicationRecord
   has_many :guesses, dependent: :destroy
   has_one_attached :avatar
 
-  validates :lobby_id, :avatar, presence: true
+  validates :lobby_id, presence: true
   validates :name, presence: true, length: { maximum: 20 }
-  validates :color, presence: true, inclusion: { in: COLORS }
+  validates :avatar, :color, presence: { message: "must be selected" }
   validates :score, numericality: { greater_than_or_equal_to: 0 }
 
   after_create_commit :broadcast_player_created
