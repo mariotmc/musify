@@ -1,0 +1,5 @@
+<% players.order(score: :desc).each do |player| %>
+	<%= render player %>
+<% end %>
+
+<%= button_to "Leave Lobby", player_path(id: Current.player.id), data: { turbo_frame: "_top", turbo_confirm: 'Are you sure?' }, method: :delete, class: "text-red-500" %>

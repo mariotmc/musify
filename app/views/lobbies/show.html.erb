@@ -2,10 +2,7 @@
 
 <%= turbo_frame_tag dom_id(Current.player), class: "flex w-full p-2" do %>
   <%= turbo_frame_tag "players", class: "flex flex-col items-center gap-3 p-3 border border-gray-200" do %>
-    <% @lobby.players.each do |player| %>
-      <%= render player %>
-    <% end %>
-    <%= button_to "Leave Lobby", player_path(id: Current.player.id), data: { turbo_frame: "_top", turbo_confirm: 'Are you sure?' }, method: :delete, class: "text-red-500" %>
+    <%= render partial: "players/players", locals: { players: @lobby.players } %>
   <% end %>
 
   <%= turbo_frame_tag "game", class: "flex-1 w-full" do %>

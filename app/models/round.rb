@@ -26,6 +26,12 @@ class Round < ApplicationRecord
     end
   end
 
+  def broadcast_update_scores
+    players.each do |player|
+      broadcast_update_to("player_#{player.id}", target: "players", partial: "players/players", locals: { players: players })
+    end
+  end
+
   def start
     next_song! if all_songs_received?
   end
@@ -35,6 +41,7 @@ class Round < ApplicationRecord
   end
 
   def finish_current_song!
+    broadcast_update_scores
     if more_songs?
       update!(current_song_index: current_song_index + 1)
       update!(status: "scoreboard")
