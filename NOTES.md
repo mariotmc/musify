@@ -15,12 +15,15 @@ tracks = JSON.parse(response.body)['tracks']['items']
 
 TODO
 
-- player joining mid game (works, but will mess up places where we depend on)
-- player leaving mid game (https://claude.ai/chat/c219349e-104d-4ae7-97ed-f085c2f3daf1)
-  - if player leaves on scoreboard screen it will try to play next song (but song deleted bc player left)
-- disconnections and reconnections (too much, just leave it?)
-- refreshing will start visual timer over (backend still works as intended)
+- edge cases
+  - player joining mid game (works, but will mess up places where we depend on)
+  - player leaving mid game (https://claude.ai/chat/c219349e-104d-4ae7-97ed-f085c2f3daf1)
+    - if player leaves on scoreboard screen it will try to play next song (but song deleted bc player left)
+  - disconnections and reconnections (too much, just leave it?)
+  - refreshing will start visual timer over (backend still works as intended)
 - design
+  - website name
+  - logo might need text (https://app.recraft.ai/project/da8356de-04a0-4946-92cb-a2da49471da4)
   - scoring system explanation in pre round lobby
   - disclaimer that Spotify API might not have every song in song searches form view
   - animations (animate.css, turbo 8 view transitions, https://v0.dev/chat/v7u4XVdbDLi, https://v0.dev/chat/l2KRrtd1zvk)
