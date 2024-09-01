@@ -15,8 +15,11 @@ tracks = JSON.parse(response.body)['tracks']['items']
 
 TODO
 
-- necessary edge cases (scoop up from AI chats)
-- icon + favicon
+- player joining mid game (works, but will mess up places where we depend on)
+- player leaving mid game (https://claude.ai/chat/c219349e-104d-4ae7-97ed-f085c2f3daf1)
+  - if player leaves on scoreboard screen it will try to play next song (but song deleted bc player left)
+- disconnections and reconnections (too much, just leave it?)
+- refreshing will start visual timer over (backend still works as intended)
 - design
   - scoring system explanation in pre round lobby
   - disclaimer that Spotify API might not have every song in song searches form view
