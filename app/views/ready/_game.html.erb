@@ -1,6 +1,6 @@
 <%= render partial: "ready/players", locals: { players: players } %>
 
-<%= turbo_frame_tag "ready", data: { floating_avatars_target: "readyButton" }, class: "absolute z-50" do %>
+<%= turbo_frame_tag "ready" do %>
 	<% if player.ready? %>
 		<%= render partial: "ready/game_unready", locals: { game: game, player: player } %>
 	<% else %>

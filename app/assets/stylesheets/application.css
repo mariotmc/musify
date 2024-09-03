@@ -28,10 +28,39 @@
   margin-right: 0.2em;
 }
 
-#ready_players {
-  border: 2px solid red; /* For visualization */
+.trail {
+  mask: linear-gradient(transparent, transparent), linear-gradient(white, white);
+  mask-clip: padding-box, border-box;
+  mask-composite: intersect;
 }
 
-[data-floating-avatars-target="avatar"] {
-  border: 1px solid blue; /* For visualizing the avatar boundaries */
+.trail::after,
+.trail::before {
+  content: "";
+  position: absolute;
+  display: inline-block;
+  height: 50px;
+  aspect-ratio: 1;
+  animation: loop 2s infinite linear;
+  offset-anchor: 100% 50%;
+  offset-path: rect(0 100% 100% 0 round 100px);
+  offset-path: rect(0 100% 100% 0 round 50px);
+}
+
+.trail-rose::after,
+.trail-rose::before {
+  background: radial-gradient(circle at right, #ffffffbf, transparent 50%),
+    radial-gradient(circle at right, #e11d48 50%, transparent);
+}
+
+.trail-blue::after,
+.trail-blue::before {
+  background: radial-gradient(circle at right, #ffffffbf, transparent 50%),
+    radial-gradient(circle at right, #2563eb 50%, transparent);
+}
+
+@keyframes loop {
+  to {
+    offset-distance: 100%;
+  }
 }

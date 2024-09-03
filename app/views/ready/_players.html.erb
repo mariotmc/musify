@@ -1,6 +1,6 @@
-<%= turbo_frame_tag "ready_players", data: { controller: "floating-avatars" }, class: "relative w-full h-full" do %>
+<%= turbo_frame_tag "ready_players", class: "flex justify-center items-center gap-5 w-full" do %>
 	<% players.each do |player| %>
-		<%= turbo_frame_tag "#{dom_id(player)}_ready", data: { floating_avatars_target: "avatar" }, class: "block w-20 text-center" do %>
+		<%= turbo_frame_tag "#{dom_id(player)}_ready", class: "block w-20 text-center" do %>
 			<%= image_tag player.avatar.url, loading: "lazy", class: "w-12 mx-auto h-12 rounded-full", style: "background-color: #{player.avatar_bg_color};" %>
 
 			<p class="text-<%= player.color %>-500 font-medium"><%= player.name %></p>
