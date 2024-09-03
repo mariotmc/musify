@@ -22,6 +22,7 @@ TODO
   - disconnections and reconnections (too much, just leave it?)
   - refreshing will start visual timer over (backend still works as intended)
 - design
+  - icons for ready buttons (https://chatgpt.com/c/66d78660-7968-8008-bc51-e794e25ac76e)
   - website name
   - logo might need text (https://app.recraft.ai/project/da8356de-04a0-4946-92cb-a2da49471da4)
   - scoring system explanation in pre round lobby
