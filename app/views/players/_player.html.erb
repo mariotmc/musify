@@ -3,7 +3,7 @@
 		<%= image_tag player.avatar.url, loading: "lazy", class: "w-12 h-12 rounded-full", style: "background-color: #{player.avatar_bg_color};" %>
 		<div>
 			<p class="text-<%= player.color %>-500 font-medium"><%= player.name %></p>
-			<p><%= player.score %> Points</p>
+			<p class="text-gray-500"><%= player.score %> Points</p>
 		</div>
 	</div>
 <% end %>

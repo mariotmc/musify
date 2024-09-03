@@ -1,4 +1,4 @@
-<%= turbo_frame_tag "#{dom_id(player)}_ready_button" do %>
+<%= turbo_frame_tag "#{dom_id(player)}_ready_status" do %>
 	<% if player.ready? %>
 		<p class="text-sm text-green-500">Ready</p>
 	<% else %>

@@ -1,11 +1,19 @@
 <%= turbo_stream_from dom_id(Current.player) %>
 
-<%= turbo_frame_tag dom_id(Current.player), class: "flex w-full p-2" do %>
-  <%= turbo_frame_tag "players", class: "flex flex-col items-center gap-3 p-3 border border-gray-200" do %>
+<%= button_to player_path(id: Current.player.id), data: { turbo_frame: "_top", turbo_confirm: 'Are you sure?' }, method: :delete, class: "flex items-center gap-1 w-fit ml-auto mr-3 px-2.5 py-1.5 font-medium text-rose-600 bg-rose-100 rounded-md transition-colors hover:bg-red-200" do %>
+  <span>Leave</span>
+  <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none">
+  <path d="M14 7.63636L14 4.5C14 4.22386 13.7761 4 13.5 4L4.5 4C4.22386 4 4 4.22386 4 4.5L4 19.5C4 19.7761 4.22386 20 4.5 20L13.5 20C13.7761 20 14 19.7761 14 19.5L14 16.3636" stroke="#e11d48" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M10 12L21 12M21 12L18.0004 8.5M21 12L18 15.5" stroke="#e11d48" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+<% end %>
+
+<%= turbo_frame_tag dom_id(Current.player), class: "flex gap-10 w-full h-full p-3" do %>
+  <%= turbo_frame_tag "players", class: "flex flex-col gap-5 h-fit min-w-52 p-4 rounded-lg shadow-md bg-white overflow-y-auto" do %>
     <%= render partial: "players/players", locals: { players: @lobby.players } %>
   <% end %>
 
-  <%= turbo_frame_tag "game", class: "flex-1 w-full" do %>
+  <%= turbo_frame_tag "game", class: "relative flex-1 w-full rounded-lg shadow-md bg-white" do %>
     <%= render @lobby.game, player: Current.player %>
   <% end %>
 <% end %>

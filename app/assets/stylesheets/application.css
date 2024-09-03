@@ -27,3 +27,11 @@
 .letter {
   margin-right: 0.2em;
 }
+
+#ready_players {
+  border: 2px solid red; /* For visualization */
+}
+
+[data-floating-avatars-target="avatar"] {
+  border: 1px solid blue; /* For visualizing the avatar boundaries */
+}
