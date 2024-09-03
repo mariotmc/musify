@@ -24,6 +24,7 @@ TODO
 - design
   - for each avatar the boundary offsets go down with block, right with inline-block
     - go step by step and make it work without avatar collision first
+    - https://happycoding.io/tutorials/processing/collision-detection#rectangle-rectangle-collision-detection
   - website name
   - logo might need text (https://app.recraft.ai/project/da8356de-04a0-4946-92cb-a2da49471da4)
   - scoring system explanation in pre round lobby
