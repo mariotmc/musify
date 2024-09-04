@@ -4,7 +4,7 @@ class SongSearchesController < ApplicationController
     @round_id = params[:round_id]
 
     if params[:query].present?
-      @songs = RSpotify::Track.search(params[:query], limit: 10)
+      @songs = RSpotify::Track.search(params[:query], limit: 6)
                               .select{|song| song.preview_url}
                               .map{|song| {id: song.id, title: song.name, artist: song.artists.first.name, image: song.album.images.second["url"], preview_url: song.preview_url}}
     else

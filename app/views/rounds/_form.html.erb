@@ -1,6 +1,6 @@
-<h2 class="mb-3 text-2xl text-center text-rose-500 font-bold leading-loose">PICK A SONG</h2>
-
 <%= turbo_frame_tag "song_search_query", class: "flex flex-col flex-1 items-center gap-3 w-full" do %>
+	<h2 class="mb-3 text-2xl text-center text-rose-500 font-bold leading-loose">PICK A SONG</h2>
+
 	<%= form_with url: song_searches_path, method: :get, data: { turbo_stream: true, controller: "guess-form" } do %>
 		<%= hidden_field_tag :round_id, round.id %>
 		<%= hidden_field_tag :player_id, player.id %>

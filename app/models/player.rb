@@ -9,7 +9,7 @@ class Player < ApplicationRecord
   has_one_attached :avatar
 
   validates :lobby_id, presence: true
-  validates :name, presence: true, length: { maximum: 20 }
+  validates :name, presence: true, length: { maximum: 10 }
   validates :avatar, :color, presence: { message: "must be selected" }
   validates :score, numericality: { greater_than_or_equal_to: 0 }
 

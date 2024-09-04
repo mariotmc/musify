@@ -22,13 +22,12 @@ TODO
   - disconnections and reconnections (too much, just leave it?)
   - refreshing will start visual timer over (backend still works as intended)
 - design
-  - "pick a song" still showing for players who are waiting for other players to pick a song
-    - turbo_stream.replace "song_search_query" instead of turbo_stream.replace round
-    - but changing to round messes up broadcast for last player submitting song (song doesn't play)
-    - would probably be good to also show player ready status here instead of image
+  - disclaimer that Spotify API might not have every song in song searches form view
+  - show player ready status when waiting for other players to pick song instead of image
     - when a player submitted a song set status to ready and show statuses (reset when song starts playing)
+  - when no songs found it shouldn't show the "select song" button (query -> yungblud)
   - icons for buttons (https://chatgpt.com/c/66d78660-7968-8008-bc51-e794e25ac76e)
   - website name
   - logo might need text (https://app.recraft.ai/project/da8356de-04a0-4946-92cb-a2da49471da4)
-  - disclaimer that Spotify API might not have every song in song searches form view
   - animations (animate.css, turbo 8 view transitions, https://v0.dev/chat/v7u4XVdbDLi, https://v0.dev/chat/l2KRrtd1zvk)
+- do test run with group (just a few rounds) and if current spotify api is too limited rewrite song fetching
