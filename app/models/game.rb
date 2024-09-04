@@ -15,13 +15,13 @@ class Game < ApplicationRecord
 
   def broadcast_game_started
     players.each do |player|
-      broadcast_replace_to("player_#{player.id}", target: "game", partial: "games/game", locals: { game: self, player: player })
+      broadcast_update_to("player_#{player.id}", target: "game", partial: "games/game", locals: { game: self, player: player })
     end
   end
 
   def broadcast_player_ready(player)
     players.each do |p|
-      broadcast_replace_to("player_#{p.id}", target: "player_#{player.id}_ready_status", partial: "ready/player_status", locals: { player: player })
+      broadcast_update_to("player_#{p.id}", target: "player_#{player.id}_ready_status", partial: "ready/player_status", locals: { player: player })
     end
   end
 

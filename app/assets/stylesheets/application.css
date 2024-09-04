@@ -14,10 +14,15 @@
  *= require_self
  */
 
+audio::-webkit-media-controls-panel {
+  background-color: #ffe4e6;
+}
+
 .selected-song {
   --tw-shadow: 0 10px 15px -3px #0000001a, 0 4px 6px -4px #0000001a;
   --tw-shadow-colored: 0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+  background-color: #fff1f2;
 }
 
 .word {

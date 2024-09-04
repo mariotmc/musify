@@ -1,10 +1,10 @@
-<h2>Pick a song</h2>
+<h2 class="mb-3 text-2xl text-center text-rose-500 font-bold leading-loose">PICK A SONG</h2>
 
-<%= turbo_frame_tag "song_search_query", class: "w-full" do %>
+<%= turbo_frame_tag "song_search_query", class: "flex flex-col flex-1 items-center gap-3 w-full" do %>
 	<%= form_with url: song_searches_path, method: :get, data: { turbo_stream: true, controller: "guess-form" } do %>
 		<%= hidden_field_tag :round_id, round.id %>
 		<%= hidden_field_tag :player_id, player.id %>
-		<%= text_field_tag :query, params[:query], data: { guess_form_target: "input" }, autofocus: true, placeholder: "Search for a song..." %>
+		<%= text_field_tag :query, params[:query], data: { guess_form_target: "input" }, autofocus: true, class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-2 ring-inset ring-rose-300 focus:ring-2 focus:ring-inset focus:ring-rose-600 sm:text-sm sm:leading-6" %>
 	<% end %>
 
 	<%= turbo_frame_tag "song_search_results", class: "w-full" %>
