@@ -7,7 +7,7 @@ gem "sprockets-rails"
 gem "pg", "~> 1.1"
 gem "puma", ">= 5.0"
 gem "importmap-rails"
-gem "turbo-rails"
+gem "turbo-rails", "~> 2.0.0.pre.beta"
 gem "stimulus-rails"
 gem "redis", ">= 4.0.1"
 gem "tzinfo-data", platforms: %i[ windows jruby ]

@@ -69,3 +69,8 @@ audio::-webkit-media-controls-panel {
     offset-distance: 100%;
   }
 }
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.5s;
+}

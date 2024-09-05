@@ -312,7 +312,7 @@ DEPENDENCIES
   sprockets-rails
   stimulus-rails
   tailwindcss-rails (~> 2.6)
-  turbo-rails
+  turbo-rails (~> 2.0.0.pre.beta)
   tzinfo-data
   web-console
 
