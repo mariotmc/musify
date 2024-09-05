@@ -1,4 +1,4 @@
-<%= turbo_frame_tag round, class: "w-full" do %>
+<%= turbo_frame_tag round, class: "w-full h-full" do %>
   <div data-controller="timer" data-timer-end-time-value="<%= (Time.current + 30.seconds).to_i %>" data-timer-hint-outlet="#hint">
     <span data-timer-target="timerDisplay">30</span>
 

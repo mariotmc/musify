@@ -64,4 +64,19 @@ class Player < ApplicationRecord
     index = AVATARS.find_index(avatar_name)
     AVATAR_BACKGROUND_COLORS[index]
   end
+
+  def ordinal_number_placement(number)
+    return if number <= 3
+
+    if (11..13).include?(number % 100)
+      "th"
+    else
+      case number % 10
+      when 1 then "st"
+      when 2 then "nd"
+      when 3 then "rd"
+      else "th"
+      end
+    end
+  end
 end

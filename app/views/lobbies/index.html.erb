@@ -8,7 +8,7 @@
 
   <%= turbo_frame_tag "lobbies", class: "grid grid-cols-3 gap-3" do %>
     <% @lobbies.each do |lobby| %>
-      <%= link_to lobby_path(lobby.code), data: { turbo_frame: "_top" }, class: "flex justify-between items-center max-w-sm p-4 bg-gray-100 rounded-""lg" do %>
+      <%= link_to lobby_path(lobby.code), data: { turbo_frame: "_top" }, class: "flex justify-between items-center max-w-sm p-4 bg-white rounded-""lg" do %>
         <span><%= lobby.code %></span>
         <span><%= lobby.players.count %> Players</span>
         <span><%= lobby.created_at.strftime("%d.%m.%y") %></span>

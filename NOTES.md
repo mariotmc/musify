@@ -22,6 +22,7 @@ TODO
   - disconnections and reconnections (too much, just leave it?)
   - refreshing will start visual timer over (backend still works as intended)
 - design
+  - round started view
   - show player ready status when waiting for other players to pick song instead of image
     - when a player submitted a song set status to ready and show statuses (reset when song starts playing)
   - icons for buttons (https://chatgpt.com/c/66d78660-7968-8008-bc51-e794e25ac76e)

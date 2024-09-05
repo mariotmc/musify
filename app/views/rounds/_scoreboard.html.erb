@@ -1,13 +1,114 @@
-<%= turbo_frame_tag round, class: "w-full" do %>
+<%= turbo_frame_tag round, class: "w-full h-full" do %>
 	<%= turbo_frame_tag "scoreboard" do %>
-		<h2>Standings</h2>
+		<h2 class="mb-5 text-2xl text-center text-rose-500 font-bold leading-loose">STANDINGS</h2>
 
-		<% round.players.each do |player| %>
-			<%= turbo_frame_tag player do %>
-				<%= player.name %> - <%= player.score %>
-			<% end %>
+		<div class="flex flex-col gap-3">
+		<% round.players.order(score: :desc).each_with_index do |player, index| %>
+			<div class="flex justify-center items-center gap-5">
+				<%= turbo_frame_tag player, class: "inline-flex items-center gap-3 max-w-xs w-full py-2 px-4 bg-rose-50 rounded-lg" do %>
+					<div class="flex items-center gap-3">
+						<% if index == 0 %>
+							<svg height="40px" width="40px" viewBox="0 0 511.993 511.993" xml:space="preserve">
+								<polygon style="fill:#FFD782;" points="70.521,313.224 70.521,391.149 256,411.879 441.479,391.149 441.479,313.224 256,292.495 "/>
+								<circle style="fill:#FF6465;" cx="139.621" cy="352.19" r="13.594"/>
+								<polygon style="opacity:0.1;enable-background:new    ;" points="131.47,391.149 131.47,313.224 286.474,295.901 256,292.495
+									70.521,313.224 70.521,391.149 256,411.879 286.474,408.473 "/>
+								<g>
+									<circle style="fill:#FF6465;" cx="255.996" cy="352.19" r="13.594"/>
+									<circle style="fill:#FF6465;" cx="372.384" cy="352.19" r="13.594"/>
+								</g>
+								<path style="fill:#FFD782;" d="M441.479,292.495l50.693-150.076l-10.654-11.414c0,0-131.556,159.811-215.767-15.981h-19.504
+									c-84.209,175.792-215.767,15.981-215.767,15.981l-10.654,11.414l50.693,150.076H441.479z"/>
+								<g style="opacity:0.1;">
+									<path d="M30.483,131.004l-10.654,11.416l50.693,150.076h60.949l-36.928-109.32C57.337,163.622,30.483,131.004,30.483,131.004z"/>
+								</g>
+								<g>
+									<circle style="fill:#E6B95C;" cx="255.996" cy="106.225" r="26.842"/>
+									<circle style="fill:#E6B95C;" cx="26.842" cy="137.382" r="26.842"/>
+									<circle style="fill:#E6B95C;" cx="485.151" cy="137.382" r="26.842"/>
+								</g>
+								<ellipse style="fill:#FF6465;" cx="255.996" cy="208.717" rx="22.568" ry="33.217"/>
+								<path style="fill:#E6B95C;" d="M441.479,271.766H70.521c-11.449,0-20.73,9.281-20.73,20.73l0,0c0,11.449,9.281,20.73,20.73,20.73
+									h370.958c11.449,0,20.73-9.281,20.73-20.73l0,0C462.209,281.046,452.927,271.766,441.479,271.766z"/>
+								<path style="opacity:0.1;enable-background:new    ;" d="M110.74,292.495L110.74,292.495c0-11.449,9.281-20.73,20.73-20.73H70.521
+									c-11.449,0-20.73,9.281-20.73,20.73l0,0c0,11.449,9.281,20.73,20.73,20.73h60.949C120.021,313.224,110.74,303.944,110.74,292.495z"
+									/>
+								<path style="fill:#E6B95C;" d="M441.479,391.149H70.521c-11.449,0-20.73,9.281-20.73,20.73l0,0c0,11.449,9.281,20.73,20.73,20.73
+									h370.958c11.449,0,20.73-9.281,20.73-20.73l0,0C462.209,400.431,452.927,391.149,441.479,391.149z"/>
+								<path style="opacity:0.1;enable-background:new    ;" d="M110.74,411.879L110.74,411.879c0-11.449,9.281-20.73,20.73-20.73H70.521
+									c-11.449,0-20.73,9.281-20.73,20.73l0,0c0,11.449,9.281,20.73,20.73,20.73h60.949C120.021,432.609,110.74,423.328,110.74,411.879z"
+									/>
+							</svg>
+						<% elsif index == 1 %>
+							<svg width="40px" height="40px" viewBox="-3.5 0 32 32" fill="none">
+								<path d="M9.73779 18.8436L12.9509 20.6987L6.42609 32.0001L4.55333 27.8234L9.73779 18.8436Z" fill="#418ED6"/>
+								<path d="M9.73779 18.8436L6.52467 16.9885L-0.000155079 28.2899L4.55333 27.8234L9.73779 18.8436Z" fill="#2B63A6"/>
+								<path d="M14.3218 18.8436L11.1087 20.6987L17.6335 32.0001L19.5062 27.8234L14.3218 18.8436Z" fill="#2B63A6"/>
+								<path d="M14.3218 18.8436L17.5349 16.9885L24.0597 28.2899L19.5062 27.8234L14.3218 18.8436Z" fill="#418ED6"/>
+								<circle cx="12.0246" cy="11.0622" r="11.0622" fill="#E3E3E3"/>
+								<circle cx="12.0247" cy="11.0621" r="8.63501" fill="#595959"/>
+								<mask id="mask0_103_1231" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="3" y="3" width="19" height="18">
+								<circle cx="12.4857" cy="11.984" r="8.65511" fill="#C28B37"/>
+								</mask>
+								<g mask="url(#mask0_103_1231)">
+								<circle cx="12.0247" cy="11.0622" r="8.65511" fill="url(#paint0_linear_103_1231)"/>
+								</g>
+								<path d="M12.0713 5.04102L13.9383 8.77508L17.6724 9.24183L15.1083 12.1171L15.8054 16.2432L12.0713 14.3762L8.33724 16.2432L9.04049 12.1171L6.47021 9.24183L10.2043 8.77508L12.0713 5.04102Z" fill="url(#paint1_linear_103_1231)"/>
+								<defs>
+								<linearGradient id="paint0_linear_103_1231" x1="12.0247" y1="2.4071" x2="12.0247" y2="19.7173" gradientUnits="userSpaceOnUse">
+								<stop stop-color="#9CA1A3"/>
+								<stop offset="1" stop-color="#9CA1A3" stop-opacity="0"/>
+								</linearGradient>
+								<linearGradient id="paint1_linear_103_1231" x1="12.0713" y1="5.04102" x2="12.0713" y2="16.2432" gradientUnits="userSpaceOnUse">
+								<stop stop-color="#F1F5F5"/>
+								<stop offset="0.0001" stop-color="white"/>
+								<stop offset="1" stop-color="#F1F5F5"/>
+								</linearGradient>
+								</defs>
+							</svg>
+						<% elsif index == 2 %>
+							<svg width="40px" height="40px" viewBox="-3.5 0 32 32" fill="none">
+								<path d="M9.73779 18.8436L12.9509 20.6987L6.42609 32.0001L4.55333 27.8234L9.73779 18.8436Z" fill="#AA75CB"/>
+								<path d="M9.73779 18.8436L6.52467 16.9885L-0.000155079 28.2899L4.55333 27.8234L9.73779 18.8436Z" fill="#73488D"/>
+								<path d="M14.3218 18.8436L11.1087 20.6987L17.6335 32.0001L19.5062 27.8234L14.3218 18.8436Z" fill="#73488D"/>
+								<path d="M14.3218 18.8436L17.5349 16.9885L24.0597 28.2899L19.5062 27.8234L14.3218 18.8436Z" fill="#AA75CB"/>
+								<circle cx="12.0246" cy="11.0622" r="11.0622" fill="#DC9E42"/>
+								<circle cx="12.0247" cy="11.0621" r="8.63501" fill="#734C12"/>
+								<mask id="mask0_103_1242" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="3" y="3" width="19" height="18">
+								<circle cx="12.4857" cy="11.984" r="8.65511" fill="#C28B37"/>
+								</mask>
+								<g mask="url(#mask0_103_1242)">
+								<circle cx="12.0247" cy="11.0622" r="8.65511" fill="#A36D1D"/>
+								</g>
+								<path d="M12.0713 5.04102L13.9383 8.77508L17.6724 9.24183L15.1083 12.1171L15.8054 16.2432L12.0713 14.3762L8.33724 16.2432L9.04049 12.1171L6.47021 9.24183L10.2043 8.77508L12.0713 5.04102Z" fill="url(#paint0_linear_103_1242)"/>
+								<defs>
+								<linearGradient id="paint0_linear_103_1242" x1="12.0713" y1="5.04102" x2="12.0713" y2="16.2432" gradientUnits="userSpaceOnUse">
+								<stop stop-color="#FCFF80"/>
+								<stop offset="0.401042" stop-color="#FDE870"/>
+								<stop offset="1" stop-color="#FFC759"/>
+								</linearGradient>
+								</defs>
+								</svg>
+						<% else %>
+							<p class="w-10 text-center text-rose-600 font-bold">
+								<span class="text-2xl"><%= index + 1 %></span>
+								<sup class="text-base"><%= player.ordinal_number_placement(index + 1) %></sup>
+							</p>
+						<% end %>
+
+						<%= image_tag player.avatar.url, loading: "lazy", class: "w-10 h-10 rounded-full", style: "background-color: #{player.avatar_bg_color};" %>
+					</div>
+					<div class="flex flex-1 justify-between">
+						<p class="font-bold text-rose-600"><%= player.name %></p>
+						<p class="font-bold text-rose-600"><%= player.score %></p>
+					</div>
+				<% end %>
+			</div>
 		<% end %>
+	</div>
 	<% end %>
 
-	<%= render partial: "ready/round", locals: { player: player, game: round.game, round: round, players: round.players } %>
+	<div class="flex flex-col items-center gap-10 mt-10">
+		<%= render partial: "ready/round", locals: { player: player, game: round.game, round: round, players: round.players } %>
+	</div>
 <% end %>
