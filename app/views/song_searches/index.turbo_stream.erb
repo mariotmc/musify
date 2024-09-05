@@ -2,29 +2,31 @@
 	<% if @songs.empty? %>
 		<p class="text-center text-gray-500">No songs found :(</p>
 	<% else %>
-		<%= form_with url: song_searches_path, method: :post, data: { turbo_stream: true } do %>
-		<%= hidden_field_tag :round_id, @round_id %>
-		<%= hidden_field_tag :player_id, @player_id %>
+		<%= render "rounds/loading" %>
 
-		<div data-controller="song-picker" class="grid grid-cols-2 gap-5 mb-10">
-			<% @songs.each do |song| %>
-				<div data-song-picker-target="song" data-action="click->song-picker#selectSong" class="flex items-center p-2 gap-3 rounded-lg transition-all cursor-pointer hover:scale-105">
-					<%= radio_button_tag :spotify_id, song[:id], class: "hidden" %>
-					<%= image_tag song[:image], loading: "lazy", class: "w-20 h-20 rounded-lg" %>
+		<%= form_with url: song_searches_path, method: :post, data: { turbo_stream: true }, class: "group-aria-busy:hidden" do %>
+			<%= hidden_field_tag :round_id, @round_id %>
+			<%= hidden_field_tag :player_id, @player_id %>
 
-					<div class="flex-1 h-fit text-sm text-gray-500">
-						<p class="mb-0.5"><%= song[:artist] %></p>
-						<p class="mb-1"><%= song[:title] %></p>
-						<audio controls class="w-full h-9">
-							<source src="<%= song[:preview_url] %>" type="audio/mpeg">
-							Your browser does not support the audio element.
-						</audio>
+			<div data-controller="song-picker" class="grid grid-cols-2 gap-5 mb-8">
+				<% @songs.each do |song| %>
+					<div data-song-picker-target="song" data-action="click->song-picker#selectSong" class="flex items-center p-2 gap-3 rounded-lg transition-all cursor-pointer hover:scale-105">
+						<%= radio_button_tag :spotify_id, song[:id], class: "hidden" %>
+						<%= image_tag song[:image], loading: "lazy", class: "w-20 h-20 rounded-lg" %>
+
+						<div class="flex-1 h-fit text-sm text-gray-500">
+							<p class="mb-0.5"><%= song[:artist] %></p>
+							<p class="mb-1"><%= song[:title] %></p>
+							<audio controls class="w-full h-9">
+								<source src="<%= song[:preview_url] %>" type="audio/mpeg">
+								Your browser does not support the audio element.
+							</audio>
+						</div>
 					</div>
-				</div>
-			<% end %>
-		</div>
+				<% end %>
+			</div>
 
-		<%= submit_tag "Select Song", class: "flex items-center gap-1 w-fit mx-auto px-2.5 py-1.5 font-medium text-rose-600 bg-rose-100 rounded-md cursor-pointer transition-colors hover:bg-rose-200" %>
+			<%= submit_tag "Select Song", class: "flex items-center gap-1 w-fit mx-auto px-2.5 py-1.5 font-medium text-rose-600 bg-rose-100 rounded-md cursor-pointer transition-colors hover:bg-rose-200" %>
 		<% end %>
 	<% end %>
 <% end %>
