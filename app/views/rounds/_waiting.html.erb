@@ -1,7 +1,7 @@
 <%= turbo_frame_tag round, class: "flex flex-col w-full h-full" do %>
 	<% if player.created_song_for_current_round? %>
 		<div class="flex flex-col justify-center items-center gap-10 h-full">
-			<p class="text-2xl text-center text-rose-500 font-bold leading-loose">Waiting for other players to pick songs</p>
+			<p class="text-2xl text-center text-rose-500 font-bold leading-loose">Waiting for other players to pick a song...</p>
 			<%= image_tag "sleeping_bear.png", loading: "lazy", class: "max-w-80 h-auto rounded-lg" %>
 		</div>
 	<% else %>
