@@ -1,5 +1,8 @@
 <%= turbo_stream.update "song_search_results" do %>
-	<%= form_with url: song_searches_path, method: :post, data: { turbo_stream: true } do %>
+	<% if @songs.empty? %>
+		<p class="text-center text-gray-500">No songs found :(</p>
+	<% else %>
+		<%= form_with url: song_searches_path, method: :post, data: { turbo_stream: true } do %>
 		<%= hidden_field_tag :round_id, @round_id %>
 		<%= hidden_field_tag :player_id, @player_id %>
 
@@ -22,9 +25,6 @@
 		</div>
 
 		<%= submit_tag "Select Song", class: "flex items-center gap-1 w-fit mx-auto px-2.5 py-1.5 font-medium text-rose-600 bg-rose-100 rounded-md cursor-pointer transition-colors hover:bg-rose-200" %>
-	<% end %>
-
-	<% if @songs.empty? %>
-		<p>No songs found</p>
+		<% end %>
 	<% end %>
 <% end %>

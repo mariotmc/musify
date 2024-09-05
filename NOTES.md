@@ -24,7 +24,6 @@ TODO
 - design
   - show player ready status when waiting for other players to pick song instead of image
     - when a player submitted a song set status to ready and show statuses (reset when song starts playing)
-  - when no songs found it shouldn't show the "select song" button (query -> yungblud)
   - icons for buttons (https://chatgpt.com/c/66d78660-7968-8008-bc51-e794e25ac76e)
   - website name
   - logo might need text (https://app.recraft.ai/project/da8356de-04a0-4946-92cb-a2da49471da4)
