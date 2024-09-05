@@ -1,10 +1,23 @@
-<%= turbo_frame_tag "song_search_query", class: "flex flex-col flex-1 items-center gap-3 w-full" do %>
-	<h2 class="mb-3 text-2xl text-center text-rose-500 font-bold leading-loose">PICK A SONG</h2>
+<%= turbo_frame_tag "song_search_query", class: "flex flex-col flex-1 items-center w-full" do %>
+	<h2 class="mb-5 text-2xl text-center text-rose-500 font-bold leading-loose">PICK A SONG</h2>
 
-	<%= form_with url: song_searches_path, method: :get, data: { turbo_stream: true, controller: "guess-form" } do %>
+	<div class="w-fit mb-10 rounded-md bg-blue-50 p-4">
+		<div class="flex items-center">
+			<div class="flex-shrink-0">
+				<svg class="h-5 w-5 text-blue-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+					<path fill-rule="evenodd" d="M8.485 2.495c.673-1.167 2.357-1.167 3.03 0l6.28 10.875c.673 1.167-.17 2.625-1.516 2.625H3.72c-1.347 0-2.189-1.458-1.515-2.625L8.485 2.495zM10 5a.75.75 0 01.75.75v3.5a.75.75 0 01-1.5 0v-3.5A.75.75 0 0110 5zm0 9a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd" />
+				</svg>
+			</div>
+			<div class="ml-3 text-sm text-blue-700 font-medium">
+				<h3>If you can't find the song you're looking for it's because Spotify doesn't provide a song preview.</h3>
+			</div>
+		</div>
+	</div>
+
+	<%= form_with url: song_searches_path, method: :get, data: { turbo_stream: true, controller: "guess-form" }, class: "mb-10" do %>
 		<%= hidden_field_tag :round_id, round.id %>
 		<%= hidden_field_tag :player_id, player.id %>
-		<%= text_field_tag :query, params[:query], data: { guess_form_target: "input" }, autofocus: true, class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-2 ring-inset ring-rose-300 focus:ring-2 focus:ring-inset focus:ring-rose-600 sm:text-sm sm:leading-6" %>
+		<%= text_field_tag :query, params[:query], data: { guess_form_target: "input" }, autofocus: true, placeholder: "Enter a song", class: "rounded-md border-0 py-1.5 text-gray-800 shadow-sm ring-2 ring-inset ring-rose-300 focus:ring-2 focus:ring-inset focus:ring-rose-600 sm:text-sm sm:leading-6" %>
 	<% end %>
 
 	<%= turbo_frame_tag "song_search_results", class: "w-full" %>

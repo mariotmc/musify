@@ -3,7 +3,7 @@
 		<%= hidden_field_tag :round_id, @round_id %>
 		<%= hidden_field_tag :player_id, @player_id %>
 
-		<div data-controller="song-picker" class="grid grid-cols-2 gap-5 mb-5">
+		<div data-controller="song-picker" class="grid grid-cols-2 gap-5 mb-10">
 			<% @songs.each do |song| %>
 				<div data-song-picker-target="song" data-action="click->song-picker#selectSong" class="flex items-center p-2 gap-3 rounded-lg transition-all cursor-pointer hover:scale-105">
 					<%= radio_button_tag :spotify_id, song[:id], class: "hidden" %>

@@ -22,7 +22,6 @@ TODO
   - disconnections and reconnections (too much, just leave it?)
   - refreshing will start visual timer over (backend still works as intended)
 - design
-  - disclaimer that Spotify API might not have every song in song searches form view
   - show player ready status when waiting for other players to pick song instead of image
     - when a player submitted a song set status to ready and show statuses (reset when song starts playing)
   - when no songs found it shouldn't show the "select song" button (query -> yungblud)
