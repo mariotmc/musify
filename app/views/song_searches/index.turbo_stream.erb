@@ -1,9 +1,9 @@
 <%= turbo_stream.update "song_search_results" do %>
-	<% if @songs.empty? %>
-		<p class="text-center text-gray-500">No songs found :(</p>
-	<% else %>
-		<%= render "rounds/loading" %>
+	<%= render "rounds/loading" %>
 
+	<% if @songs.empty? %>
+		<p class="group-aria-busy:hidden text-center text-gray-500">No songs found :(</p>
+	<% else %>
 		<%= form_with url: song_searches_path, method: :post, data: { turbo_stream: true }, class: "group-aria-busy:hidden" do %>
 			<%= hidden_field_tag :round_id, @round_id %>
 			<%= hidden_field_tag :player_id, @player_id %>
