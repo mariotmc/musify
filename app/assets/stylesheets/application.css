@@ -25,14 +25,6 @@ audio::-webkit-media-controls-panel {
   background-color: #fff1f2;
 }
 
-.word {
-  margin-right: 0.4em;
-}
-
-.letter {
-  margin-right: 0.2em;
-}
-
 .trail {
   mask: linear-gradient(transparent, transparent), linear-gradient(white, white);
   mask-clip: padding-box, border-box;

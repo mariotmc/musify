@@ -28,9 +28,9 @@ export default class extends Controller {
     this.hintDisplayTarget.innerHTML = hint
       .split(" ")
       .map((word) => {
-        return `<span class="word">${word
+        return `<span class="mr-2 text-gray-800 text-2xl">${word
           .split("")
-          .map((char) => `<span class="letter">${char}</span>`)
+          .map((char) => `<span class="mr-1">${char}</span>`)
           .join("")}</span>`;
       })
       .join("");

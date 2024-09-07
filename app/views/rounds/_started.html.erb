@@ -3,43 +3,50 @@
        data-timer-end-time-value="<%= (Time.current + 30.seconds).to_i %>"
        data-timer-hint-outlet="#hint"
        class="h-full">
-    <div class="relative w-20 h-20 mx-auto mb-4">
-      <svg class="w-full h-full" viewBox="0 0 100 100">
-        <circle class="text-gray-200 stroke-current" stroke-width="10" cx="50" cy="50" r="40" fill="transparent"/>
-        <circle data-timer-target="progressCircle"
-                class="text-yellow-500 stroke-current transition-all duration-200 ease-linear"
-                stroke-width="10"
-                stroke-linecap="round"
-                cx="50"
-                cy="50"
-                r="40"
-                fill="transparent"
-                stroke-dasharray="251.2"
-                stroke-dashoffset="0"
-                transform="rotate(-90 50 50)"/>
-      </svg>
-      <div data-timer-target="timerDisplay"
-           class="absolute inset-0 flex items-center justify-center text-3xl font-bold">
-        30
+    <div class="flex items-center mb-10">
+      <h2 class="flex-1 text-2xl text-center text-gray-800 font-bold">Song <%= round.current_song_index + 1 %> of <%= round.game.lobby.players.size %> playing</h2>
+
+      <div class="relative w-16 h-16 ml-auto">
+        <svg class="w-full h-full" viewBox="0 0 100 100">
+          <circle class="text-gray-200 stroke-current" stroke-width="10" cx="50" cy="50" r="40" fill="transparent"/>
+          <circle data-timer-target="progressCircle"
+                  class="text-yellow-500 stroke-current transition-all duration-200 ease-linear"
+                  stroke-width="10"
+                  stroke-linecap="round"
+                  cx="50"
+                  cy="50"
+                  r="40"
+                  fill="transparent"
+                  stroke-dasharray="251.2"
+                  stroke-dashoffset="0"
+                  transform="rotate(-90 50 50)"/>
+        </svg>
+        <div data-timer-target="timerDisplay"
+            class="absolute inset-0 flex items-center justify-center text-2xl font-bold text-gray-800">
+          30
+        </div>
       </div>
     </div>
 
-    <div class="flex gap-10">
-      <div>
-        <%= image_tag round.current_song.image, loading: "lazy", data: { timer_target: "image"}, class: "max-w-40 h-auto rounded-lg transition-all" %>
+    <div class="flex justify-center">
+      <div class="flex-1 flex flex-col items-center">
+        <%= image_tag round.current_song.image, loading: "lazy", data: { timer_target: "image"}, class: "max-w-60 h-auto rounded-lg blur-md transition-all" %>
+
         <p data-controller="hint"
            data-hint-initial-hint-value="<%= round.current_song.initial_hint %>"
            data-hint-first-letter-hint-value="<%= round.current_song.hint_with_first_letters %>"
            data-hint-both-letters-hint-value="<%= round.current_song.hint_with_both_letters %>"
-           id="hint">
+           id="hint"
+           class="mt-10 text-gray-800 text-sm">
           <span data-hint-target="hintDisplay"></span>
         </p>
+
         <audio autoplay class="hidden">
           <source src="<%= round.current_song.preview_url %>" type="audio/mpeg">
         </audio>
       </div>
 
-      <div class="self-end overflow-hidden w-full">
+      <div class="self-end overflow-hidden w-full max-w-xs">
         <%= turbo_frame_tag "guesses", class: "w-full h-full" do %>
           <%= render partial: "guesses/guess", collection: round.guesses %>
         <% end %>
@@ -50,11 +57,11 @@
 
           <%= turbo_frame_tag "guesses_input" do %>
             <% if round.current_song.player == player %>
-              <%= f.text_field :content, placeholder: "Not allowed to guess your own song", disabled: true, class: "w-full cursor-not-allowed" %>
+              <%= f.text_field :content, placeholder: "Not allowed to guess your own song", disabled: true, class: "w-full cursor-not-allowed rounded-md border-0 py-1.5 text-gray-800 shadow-sm ring-2 ring-inset ring-rose-600 sm:text-sm sm:leading-6" %>
             <% elsif player.guessed_song_correctly?(song: round.current_song) %>
-              <%= f.text_field :content, disabled: true, class: "w-full cursor-not-allowed" %>
+              <%= f.text_field :content, disabled: true, class: "w-full cursor-not-allowed rounded-md border-0 py-1.5 text-gray-800 shadow-sm ring-2 ring-inset ring-rose-600 sm:text-sm sm:leading-6" %>
             <% else %>
-              <%= f.text_field :content, placeholder: "Take a guess", data: { guess_form_target: "input" }, autofocus: true, class: "w-full" %>
+              <%= f.text_field :content, placeholder: "Take a guess", data: { guess_form_target: "input" }, autofocus: true, class: "w-full rounded-md border-0 py-1.5 text-gray-800 shadow-sm ring-2 ring-inset ring-rose-300 focus:ring-2 focus:ring-inset focus:ring-rose-600 sm:text-sm sm:leading-6" %>
             <% end %>
           <% end %>
         <% end %>

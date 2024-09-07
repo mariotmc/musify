@@ -48,14 +48,15 @@ export default class extends Controller {
   }
 
   unblurImage(timeLeft) {
-    if (timeLeft <= 10) {
-      if (this.imageTarget.classList.contains("blur-md")) this.imageTarget.classList.remove("blur-md");
-      if (!this.imageTarget.classList.contains("blur-sm")) this.imageTarget.classList.add("blur-sm");
-    } else if (timeLeft <= 20) {
-      if (this.imageTarget.classList.contains("blur-md")) this.imageTarget.classList.remove("blur-md");
-      if (!this.imageTarget.classList.contains("blur")) this.imageTarget.classList.add("blur");
-    } else {
-      if (!this.imageTarget.classList.contains("blur-md")) this.imageTarget.classList.add("blur-md");
+    const blurClasses = ["blur-md", "blur", "blur-sm"];
+    this.imageTarget.classList.remove(...blurClasses);
+
+    if (timeLeft > 20) {
+      this.imageTarget.classList.add("blur-md");
+    } else if (timeLeft > 10) {
+      this.imageTarget.classList.add("blur");
+    } else if (timeLeft > 5) {
+      this.imageTarget.classList.add("blur-sm");
     }
   }
 
