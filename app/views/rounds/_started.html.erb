@@ -1,6 +1,28 @@
 <%= turbo_frame_tag round, class: "block w-full h-full" do %>
-  <div data-controller="timer" data-timer-end-time-value="<%= (Time.current + 30.seconds).to_i %>" data-timer-hint-outlet="#hint", class="h-full">
-    <span data-timer-target="timerDisplay">30</span>
+  <div data-controller="timer"
+       data-timer-end-time-value="<%= (Time.current + 30.seconds).to_i %>"
+       data-timer-hint-outlet="#hint"
+       class="h-full">
+    <div class="relative w-20 h-20 mx-auto mb-4">
+      <svg class="w-full h-full" viewBox="0 0 100 100">
+        <circle class="text-gray-200 stroke-current" stroke-width="10" cx="50" cy="50" r="40" fill="transparent"/>
+        <circle data-timer-target="progressCircle"
+                class="text-yellow-500 stroke-current transition-all duration-200 ease-linear"
+                stroke-width="10"
+                stroke-linecap="round"
+                cx="50"
+                cy="50"
+                r="40"
+                fill="transparent"
+                stroke-dasharray="251.2"
+                stroke-dashoffset="0"
+                transform="rotate(-90 50 50)"/>
+      </svg>
+      <div data-timer-target="timerDisplay"
+           class="absolute inset-0 flex items-center justify-center text-3xl font-bold">
+        30
+      </div>
+    </div>
 
     <div class="flex gap-10">
       <div>
