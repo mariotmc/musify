@@ -1,8 +1,9 @@
 import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
-  static targets = ["timerDisplay", "progressCircle"];
+  static targets = ["timerDisplay", "progressCircle", "image"];
   static values = { endTime: Number };
+  static outlets = ["hint"];
 
   connect() {
     this.timerInterval = setInterval(() => this.updateTimer(), 50);
@@ -26,6 +27,9 @@ export default class extends Controller {
 
     if (timeLeft <= 0) {
       clearInterval(this.timerInterval);
+    } else {
+      this.unblurImage(timeLeft);
+      this.updateHint(timeLeft);
     }
   }
 
@@ -41,5 +45,29 @@ export default class extends Controller {
 
     this.progressCircleTarget.classList.remove(...colors.map((c) => `text-${c}`));
     this.progressCircleTarget.classList.add(`text-${colors[colorIndex]}`);
+  }
+
+  unblurImage(timeLeft) {
+    if (timeLeft <= 10) {
+      if (this.imageTarget.classList.contains("blur-md")) this.imageTarget.classList.remove("blur-md");
+      if (!this.imageTarget.classList.contains("blur-sm")) this.imageTarget.classList.add("blur-sm");
+    } else if (timeLeft <= 20) {
+      if (this.imageTarget.classList.contains("blur-md")) this.imageTarget.classList.remove("blur-md");
+      if (!this.imageTarget.classList.contains("blur")) this.imageTarget.classList.add("blur");
+    } else {
+      if (!this.imageTarget.classList.contains("blur-md")) this.imageTarget.classList.add("blur-md");
+    }
+  }
+
+  updateHint(timeLeft) {
+    if (this.hasHintOutlet) {
+      if (timeLeft <= 10) {
+        this.hintOutlet.showBothLettersHint();
+      } else if (timeLeft <= 20) {
+        this.hintOutlet.showFirstLetterHint();
+      } else {
+        this.hintOutlet.showInitialHint();
+      }
+    }
   }
 }
