@@ -22,7 +22,6 @@ TODO
   - disconnections and reconnections (too much, just leave it?)
   - refreshing will start visual timer over (backend still works as intended)
 - design
-  - next song/new round layout should be player size depended (grid if more than 4)
   - create a volume slider that shows top left of main view
     - players can at any time adjust the volume which will set a value in local storage
     - the value in local storage will be used to apply to the volume of each playback (while picking song and during the round)

@@ -46,7 +46,7 @@
         </audio>
       </div>
 
-      <div class="self-end overflow-hidden w-full max-w-sm">
+      <div class="self-end overflow-hidden w-full max-w-md">
         <%= turbo_frame_tag "guesses", class: "w-full h-full" do %>
           <%= render partial: "guesses/guess", collection: round.guesses %>
         <% end %>
