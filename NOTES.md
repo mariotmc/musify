@@ -26,6 +26,5 @@ TODO
   - create a volume slider that shows top left of main view
     - players can at any time adjust the volume which will set a value in local storage
     - the value in local storage will be used to apply to the volume of each playback (while picking song and during the round)
-  - website name (guessify, songle, songdle, trackd)
   - logo might need text (https://app.recraft.ai/project/da8356de-04a0-4946-92cb-a2da49471da4)
 - do test run with group (just a few rounds) and if current spotify api is too limited rewrite song fetching
