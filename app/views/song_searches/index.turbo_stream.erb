@@ -17,7 +17,7 @@
 						<div class="flex-1 h-fit text-sm text-gray-500">
 							<p class="mb-0.5"><%= song[:artist] %></p>
 							<p class="mb-1"><%= song[:title] %></p>
-							<audio controls class="w-full h-9">
+							<audio controls class="w-full h-9" data-volume-target="audio">
 								<source src="<%= song[:preview_url] %>" type="audio/mpeg">
 								Your browser does not support the audio element.
 							</audio>
