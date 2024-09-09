@@ -21,8 +21,3 @@ TODO
     - if player leaves on scoreboard screen it will try to play next song (but song deleted bc player left)
   - disconnections and reconnections (too much, just leave it?)
   - refreshing will start visual timer over (backend still works as intended)
-- design
-  - logo in lobbies view
-    - remove delete lobbies button
-    - when creating new lobby it should redirect you to that lobby
-- do test run with group (just a few rounds) and if current spotify api is too limited rewrite song fetching
