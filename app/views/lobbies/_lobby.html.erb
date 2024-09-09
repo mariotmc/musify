@@ -1,0 +1,6 @@
+<%= turbo_frame_tag lobby do %>
+	<%= link_to lobby_path(lobby.code), data: { turbo_frame: "_top" }, class: "flex justify-between items-center max-w-sm p-4 bg-rose-100 text-rose-600 rounded-lg shadow-md transition-colors hover:bg-rose-200" do %>
+		<span><%= lobby.code %></span>
+		<span><%= lobby.players.count %> Players</span>
+	<% end %>
+<% end %>

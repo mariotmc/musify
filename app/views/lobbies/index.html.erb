@@ -1,18 +1,14 @@
-<div class="w-full">
-  <h1 class="mb-10 font-bold text-center text-4xl">Lobbies</h1>
+<%= turbo_stream_from "lobbies" %>
 
-  <div class="flex justify-around mx-auto mb-10">
-    <%= button_to "Create a lobby", lobbies_path %>
-    <%= button_to "Delete all lobbies", lobbies_path, method: :delete %>
-  </div>
+<%= image_tag "logo.avif", loading: "lazy", class: "max-w-[200px] mx-auto" %>
 
-  <%= turbo_frame_tag "lobbies", class: "grid grid-cols-3 gap-3" do %>
-    <% @lobbies.each do |lobby| %>
-      <%= link_to lobby_path(lobby.code), data: { turbo_frame: "_top" }, class: "flex justify-between items-center max-w-sm p-4 bg-white rounded-""lg" do %>
-        <span><%= lobby.code %></span>
-        <span><%= lobby.players.count %> Players</span>
-        <span><%= lobby.created_at.strftime("%d.%m.%y") %></span>
-      <% end %>
-    <% end %>
-  <% end %>
-</div>
+<%= button_to lobbies_path, class: "group flex items-center gap-1 w-fit my-10 mx-auto px-2.5 py-1.5 font-medium text-rose-600 bg-rose-100 rounded-md transition-colors hover:bg-rose-200" do %>
+  <span>Create a lobby</span>
+  <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" class="transition-transform group-hover:rotate-180">
+    <path d="M12 5V19M5 12H19" stroke="#e11d48" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+<% end %>
+
+<%= turbo_frame_tag "lobbies", class: "grid grid-cols-4 gap-3" do %>
+  <%= render partial: "lobbies/lobby", collection: @lobbies %>
+<% end %>

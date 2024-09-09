@@ -14,7 +14,9 @@ class Player < ApplicationRecord
   validates :score, numericality: { greater_than_or_equal_to: 0 }
 
   after_create_commit :broadcast_player_created
+  after_create_commit :broadcast_lobby_created, if: :first_player?
   after_destroy_commit :broadcast_player_removed
+  after_destroy_commit :broadcast_lobby_removed, if: :last_player?
 
   def broadcast_player_created
     lobby.players.each do |player|
@@ -28,6 +30,14 @@ class Player < ApplicationRecord
       broadcast_remove_to("player_#{player.id}", target: "lobby_#{lobby.id}_player_#{id}")
       broadcast_remove_to("player_#{player.id}", target: "player_#{id}_ready")
     end
+  end
+
+  def broadcast_lobby_created
+    broadcast_prepend_to("lobbies", target: "lobbies", partial: "lobbies/lobby", locals: { lobby: lobby })
+  end
+
+  def broadcast_lobby_removed
+    broadcast_remove_to("lobbies", target: "lobby_#{lobby.id}")
   end
 
   def ready!
@@ -79,4 +89,13 @@ class Player < ApplicationRecord
       end
     end
   end
+
+  private
+    def first_player?
+      lobby.players.size == 1
+    end
+
+    def last_player?
+      lobby.players.size == 0
+    end
 end

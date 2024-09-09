@@ -2,7 +2,6 @@ Rails.application.routes.draw do
   root "lobbies#index"
 
   resources :lobbies, param: :code, only: [:index, :create, :show]
-  delete "lobbies", to: "lobbies#destroy"
 
   resources :players, only: [:new, :create, :update, :destroy]
 

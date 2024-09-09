@@ -2,21 +2,15 @@ class LobbiesController < ApplicationController
   before_action :set_lobby, :authenticate_player!, only: [:show]
 
   def index
-    @lobbies = Lobby.all
+    @lobbies = Lobby.joins(:players).group("lobbies.id").having("COUNT(players.id) > 0").order("created_at DESC")
   end
 
   def create
     @lobby = Lobby.create!
+    redirect_to lobby_path(@lobby.code)
   end
 
   def show
-  end
-
-  def destroy
-    Lobby.destroy_all
-    Current.player = nil
-    session[:player_id] = nil
-    render turbo_stream: turbo_stream.update("lobbies")
   end
 
   private
