@@ -1,5 +1,3 @@
-https://developer.spotify.com/dashboard/8c6ed9e346ee4138b41deaa656898eaf/settings
-
 PROPER AUTH
 `npm start` auth_code node app
 http://localhost:8888/
