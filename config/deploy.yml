@@ -1,0 +1,81 @@
+service: musify
+
+image: mariotmc/musify
+
+servers:
+  web:
+    - 188.245.183.143
+  # job:
+  #   hosts:
+  #     - 192.168.0.1
+  #   cmd: bin/jobs
+
+proxy:
+  ssl: false
+  app_port: 3000
+  healthcheck:
+    path: /up
+    interval: 6
+    timeout: 60
+
+registry:
+  username: mariotmc
+  password:
+    - KAMAL_REGISTRY_PASSWORD
+
+builder:
+  arch: amd64
+
+env:
+  # clear:
+  #   DB_HOST: 192.168.0.2
+  secret:
+    - RAILS_MASTER_KEY
+    - DATABASE_URL
+    - POSTGRES_USER
+    - POSTGRES_PASSWORD
+
+# Use a different ssh user than root
+# ssh:
+#   user: app
+
+# Use a persistent storage volume.
+# volumes:
+#   - "app_storage:/app/storage"
+
+# Bridge fingerprinted assets, like JS and CSS, between versions to avoid
+# hitting 404 on in-flight requests. Combines all files from new and old
+# version inside the asset_path.
+# asset_path: /app/public/assets
+
+# Configure rolling deploys by setting a wait time between batches of restarts.
+# boot:
+#   limit: 10 # Can also specify as a percentage of total hosts, such as "25%"
+#   wait: 2
+
+# Use accessory services (secrets come from .kamal/secrets).
+accessories:
+  db:
+    image: postgres:16
+    host: 188.245.183.143
+    port: 5432:5432
+    env:
+      clear:
+        POSTGRES_DB: musify_production
+      secret:
+        - POSTGRES_USER
+        - POSTGRES_PASSWORD
+    volumes:
+      - /var/lib/postgresql/data:/var/lib/postgresql/data
+  redis:
+    image: redis:latest
+    host: 188.245.183.143
+    cmd: "redis-server"
+    volumes:
+      - /var/lib/redis:/data
+
+aliases:
+  console: app exec --interactive --reuse "bin/rails console"
+  shell: app exec --interactive --reuse "bash"
+  logs: app logs -f
+  dbc: app exec --interactive --reuse "bin/rails dbconsole"
