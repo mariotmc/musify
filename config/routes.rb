@@ -21,4 +21,6 @@ Rails.application.routes.draw do
   end
 
   resources :song_searches, only: [:index, :create]
+
+  get "up" => "rails/health#show", as: :rails_health_check
 end
