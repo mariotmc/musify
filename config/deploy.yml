@@ -71,6 +71,7 @@ accessories:
   redis:
     image: redis:latest
     host: 188.245.183.143
+    port: 6380:6379
     cmd: "redis-server"
     volumes:
       - /var/lib/redis2:/data
