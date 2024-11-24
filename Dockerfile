@@ -53,10 +53,6 @@ RUN useradd rails --home /rails --shell /bin/bash && \
     chown -R rails:rails db log storage tmp
 USER rails:rails
 
-# Create storage directory and set permissions
-RUN mkdir -p /rails/storage && \
-    chown -R rails:rails /rails/storage
-
 # Entrypoint prepares the database.
 ENTRYPOINT ["/rails/bin/docker-entrypoint"]
 
