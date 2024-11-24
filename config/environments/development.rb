@@ -77,5 +77,5 @@ Rails.application.configure do
 
   Rails.application.config.hosts << /.*\.ngrok-free\.app/
   Rails.application.routes.default_url_options[:host] = "localhost"
-  Rails.application.routes.default_url_options[:port] = 3001
+  Rails.application.routes.default_url_options[:port] = 3000
 end

@@ -2,7 +2,7 @@ class TimerJob < ApplicationJob
   queue_as :default
 
   before_perform do
-    ActiveStorage::Current.url_options = { host: "localhost", port: 3001 }
+    ActiveStorage::Current.url_options = { host: "localhost", port: 3000 }
   end
 
   def perform(round:, song:)

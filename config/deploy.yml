@@ -13,7 +13,7 @@ servers:
 proxy:
   ssl: false
   host: musify.mariotmc.com
-  app_port: 3001
+  app_port: 3000
   healthcheck:
     path: /up
     interval: 6
@@ -71,7 +71,6 @@ accessories:
   redis:
     image: redis:latest
     host: 188.245.183.143
-    port: 6380:6379
     cmd: "redis-server"
     volumes:
       - /var/lib/redis2:/data
