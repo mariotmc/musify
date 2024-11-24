@@ -21,10 +21,8 @@
           </div>
 
           <div data-controller="avatar-selection" class="mb-4">
-            <%= f.file_field :avatar, accept: 'image/*', class: 'hidden', data: { avatar_selection_target: "input" } %>
-
+            <%= f.hidden_field :avatar, data: { avatar_selection_target: "input" } %>
             <span class="block text-sm font-medium text-gray-700">Avatar</span>
-
             <div class="mt-2 flex justify-center flex-wrap gap-2">
               <% Player::AVATARS.each_with_index do |avatar, index| %>
                 <label class="cursor-pointer">

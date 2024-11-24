@@ -6,7 +6,6 @@ class Player < ApplicationRecord
   belongs_to :lobby
   has_many :songs, dependent: :destroy
   has_many :guesses, dependent: :destroy
-  has_one_attached :avatar
 
   validates :lobby_id, presence: true
   validates :name, presence: true, length: { maximum: 10 }
@@ -70,8 +69,7 @@ class Player < ApplicationRecord
   end
 
   def avatar_bg_color
-    avatar_name = avatar.attachment.blob[:filename].gsub(/\.png\z/, "")
-    index = AVATARS.find_index(avatar_name)
+    index = AVATARS.find_index(avatar)
     AVATAR_BACKGROUND_COLORS[index]
   end
 
