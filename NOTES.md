@@ -13,6 +13,8 @@ tracks = JSON.parse(response.body)['tracks']['items']
 
 TODO
 
+- timer has delay, because UI is handled client side with stimulus while execution logic is handled with background job and they're not in sync (stimulus does time update, image unblur, smooth countdown with changing colours)
+  - handle everything server side
 - edge cases
   - player joining mid game (works, but will mess up places where we depend on)
   - player leaving mid game (https://claude.ai/chat/c219349e-104d-4ae7-97ed-f085c2f3daf1)
