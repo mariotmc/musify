@@ -12,6 +12,7 @@ servers:
 
 proxy:
   ssl: false
+  host: musify.mariotmc.com
   app_port: 3001
   healthcheck:
     path: /up
