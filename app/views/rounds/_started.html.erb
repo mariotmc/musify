@@ -41,7 +41,10 @@
           <span data-hint-target="hintDisplay"></span>
         </p>
 
-        <audio autoplay data-volume-target="audio" class="hidden">
+        <audio data-timer-target="audio"
+               data-volume-target="audio"
+               preload="auto"
+               class="hidden">
           <source src="<%= round.current_song.preview_url %>" type="audio/mpeg">
         </audio>
       </div>

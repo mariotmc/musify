@@ -1,12 +1,26 @@
 import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
-  static targets = ["timerDisplay", "progressCircle", "image"];
+  static targets = ["timerDisplay", "progressCircle", "image", "audio"];
   static values = { endTime: Number };
   static outlets = ["hint"];
 
   connect() {
-    this.timerInterval = setInterval(() => this.updateTimer(), 50);
+    if (this.audioTarget.readyState >= 2) {
+      // HAVE_CURRENT_DATA
+      this.startWhenReady();
+    } else {
+      this.audioTarget.addEventListener("loadeddata", () => {
+        this.startWhenReady();
+      });
+    }
+  }
+
+  startWhenReady() {
+    requestAnimationFrame(() => {
+      this.timerInterval = setInterval(() => this.updateTimer(), 50);
+      this.audioTarget.play();
+    });
   }
 
   disconnect() {
