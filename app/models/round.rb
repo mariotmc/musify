@@ -91,16 +91,6 @@ class Round < ApplicationRecord
     end
 
     def start_timer
-      execution_time = 30.seconds.from_now
-      TimerJob.set(wait_until: execution_time).perform_later(round: self, song: self.current_song)
-      broadcast_update_to_all("timer", execution_time.to_i * 1000)
-    end
-
-    def broadcast_update_to_all(target, timestamp)
-      players.each do |player|
-        broadcast_update_to("player_#{player.id}",
-          target: target,
-          content: timestamp)
-      end
+      TimerJob.set(wait_until: 30.seconds.from_now).perform_now(round: self, song: self.current_song)
     end
 end

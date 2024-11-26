@@ -1,6 +1,6 @@
 <%= turbo_frame_tag round, class: "block w-full h-full" do %>
   <div data-controller="timer"
-       data-timer-end-time-value="<%= (Time.current + 30.seconds).to_i * 1000 %>"
+       data-timer-end-time-value="<%= (Time.current + 30.seconds).to_i %>"
        data-timer-hint-outlet="#hint"
        class="h-full">
     <div class="flex items-center mb-20">
